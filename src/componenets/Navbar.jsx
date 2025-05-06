@@ -2,6 +2,7 @@
 import Image from "next/image"
 import React, { useEffect, useRef, useState } from "react"
 import { assets } from "../assets/assets";
+import * as Icon from "@deemlol/next-icons";
 
 const Navbar = () => {
 
@@ -47,11 +48,11 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
 
           <button>
-            <Image src={assets.moon_icon} alt="" className="w-6" />
+            <Icon.Moon  size={28} color="black"/>
           </button>
 
           <a
-            href="#contact" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Lexend">Contact<Image src={assets.arrow_icon} alt="" className="w-3"/></a>
+            href="#contact" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Lexend">Contact<Icon.ArrowUpRight size={28} color="black"/></a>
 
           <button className="block md:hidden ml-3" onClick={openMenu}>
             <Image src={assets.menu_black} alt="" className="w-6" />
