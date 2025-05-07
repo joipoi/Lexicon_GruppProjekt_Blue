@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-import React from 'react'
-
-function Planning() {
-  return (
-    <div>
-      <h1>Planning</h1>
-      <p>This is the Planning page content.</p>
-    </div>
-  )
-}
-
-export default Planning
-=======
 import RecipeSearch from '../componenets/RecipeSearch'
 
 function Planning() {
@@ -26,4 +12,3 @@ function Planning() {
   }
   
   export default Planning;
->>>>>>> 62ee9111a68314a02de6f101ae6a879e4ceed306

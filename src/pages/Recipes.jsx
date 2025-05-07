@@ -1,10 +1,11 @@
-function Recipes() {
-    return (
-      <div>
-        <h1>Recipes</h1>
-        <p>This is the Recipes page content.</p>
-      </div>
-    );
-  }
-  
-  export default Recipes;
+import React from 'react'
+
+const Recipes = () => {
+  return (
+    <div>
+      
+    </div>
+  )
+}
+
+export default Recipes
