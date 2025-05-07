@@ -5,7 +5,7 @@ import RecipeSearch from "../../componenets/RecipeSearch";
 export default function Planning() {
     return (
       <>
-        <Navbar />
+        
   {/* 
   TEMPORARÄRT FÖR ATT VISA
   

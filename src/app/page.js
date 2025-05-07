@@ -1,18 +1,16 @@
 'use client';
 
-import Header from "../componenets/Header";
 import Navbar from "../componenets/Navbar";
-import About from "../pages/About";
-import Planning from "../pages/Planning";
-import Recipes from "../pages/Recipes";
+import About from "./about/page";
+import Contact from "./contact/page";
+import Planning from "./planning/page";
+import Recipes from "./recipes/page";
 
 export default function Home() {
     return (
       <>
-      <Navbar />
-      <Header />
-      <Home_Page />
       <About />
+      <Contact />
       <Recipes />
       <Planning />
       </>

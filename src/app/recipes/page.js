@@ -1,5 +1,4 @@
 'use client';
-import Navbar from "../../componenets/Navbar";
 import Recipe from "../../componenets/Recipe";
 
 export default function Recipes() {
@@ -33,7 +32,6 @@ export default function Recipes() {
 
     return (
       <>
-        <Navbar />
     <p>in recipes</p>
     <Recipe {...fakeRecipes[0]} />
       
