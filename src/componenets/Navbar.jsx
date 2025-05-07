@@ -3,6 +3,7 @@ import Image from "next/image"
 import React, { useEffect, useRef, useState } from "react"
 import { assets } from "../assets/assets";
 import * as Icon from "@deemlol/next-icons";
+import Link from 'next/link';
 
 const Navbar = () => {
 
@@ -38,11 +39,11 @@ const Navbar = () => {
         </a>
         {/* -- -------- Desktop Menu -------- -- */}
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScroll ? "" : "bg-white shadow-sm bg-opacity-30 "} `}>
-          <li><a className="font-Lexend" href="#top">Home</a></li>
-          <li><a className="font-Lexend" href="#about">About</a></li>
-          <li><a className="font-Lexend" href="#recipes">Planning</a></li>
-          <li><a className="font-Lexend" href="#planning">Planning</a></li>
-          <li><a className="font-Lexend" href="#contact">Contact Us</a></li>
+          <li><Link className="font-Lexend" href="/">Home</Link></li>
+          <li><Link className="font-Lexend" href="/about">About</Link></li>
+          <li><Link className="font-Lexend" href="/planning">Planning</Link></li> 
+          <li><Link className="font-Lexend" href="/recipes">Recipes</Link></li>
+          <li><Link className="font-Lexend" href="/contact">Contact Us</Link></li>
         </ul>
 
         <div className="flex items-center gap-4">
