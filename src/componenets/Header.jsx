@@ -18,7 +18,7 @@ const Header = () => {
 
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
-                <a href="#contact"
+                <a href="#planning"
                 className="px-10 py-3 border border-white rounded-lg bg-black text-white flex items-center gap-2"
                 >Kom igång nu – skapa din första veckomeny! <span className="material-symbols-outlined">north_east </span>
                 </a>          

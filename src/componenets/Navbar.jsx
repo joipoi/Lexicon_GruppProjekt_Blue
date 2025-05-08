@@ -55,7 +55,7 @@ const Navbar = () => {
             <span className="material-symbols-outlined">north_east </span></a>
 
           <button className="block md:hidden ml-3" onClick={openMenu}>
-            <span class="material-symbols-outlined">menu</span>
+            <span className="material-symbols-outlined">menu</span>
           </button>
         </div>
 
