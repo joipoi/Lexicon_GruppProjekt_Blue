@@ -1,6 +1,6 @@
 'use client';
 import { useParams } from 'next/navigation';
-import RecipeCard from "../../../componenets/Recipe"
+import RecipeCard from "../../../componenets/RecipeCard"
 
 export default function Recipe() {
   const params = useParams();
@@ -8,28 +8,34 @@ export default function Recipe() {
 
   const fakeRecipes = [
     {
-      id: '1',
-      name: 'Spaghetti Bolognese',
+      id: '3',
+      name: 'Yogurt med bär',
       image: '/frukost//ID-17.png',
-      ingredients: ['Spaghetti', 'Ground beef', 'Tomato sauce'],
-      instructions: ['Cook pasta', 'Cook beef', 'Mix with sauce'],
-      nutrition: { Calories: '600 kcal', Protein: '25g', Carbs: '70g', Fat: '20g' },
-    },
-    {
-      id: '2',
-      name: 'Chicken Alfredo',
-      image: '/frukost//ID-1.png',
-      ingredients: ['Chicken', 'Fettuccine', 'Cream'],
-      instructions: ['Cook chicken', 'Boil pasta', 'Combine with cream'],
-      nutrition: { Calories: '750 kcal', Protein: '40g', Carbs: '65g', Fat: '35g' },
+      ingredients: ['Yogurt', 'Granola', 'bär'],
+      instructions: ['Dela Banan', 'Blanda ihop'],
+      nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
+      cookTime: '40min',
+      difficulty: 2
     },
     {
       id: '3',
-      name: 'Beef Tacos',
-      image: '/frukost//ID-2.png',
-      ingredients: ['Beef', 'Taco shells', 'Lettuce', 'Cheese'],
-      instructions: ['Cook beef', 'Fill shells', 'Add toppings'],
+      name: 'Knäckebröd',
+      image: '/frukost//ID-1.png',
+      ingredients: ['knäckebröd', 'Pålägg'],
+      instructions: ['Bre på smör', 'På med pålägg'],
       nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
+      cookTime: '10min',
+      difficulty: 3
+    },
+    {
+      id: '3',
+      name: 'Yogurt med granola och banan',
+      image: '/frukost//ID-2.png',
+      ingredients: ['Yogurt', 'Granola', 'Banan'],
+      instructions: ['Dela Banan', 'Blanda ihop'],
+      nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
+      cookTime: '20min',
+      difficulty: 3
     },
   ];
 
@@ -38,7 +44,7 @@ export default function Recipe() {
   return (
     <div>
       <h1>User Page</h1>
-      <RecipeCard {...currentRecipe} />
+      <RecipeCard recipe={currentRecipe} />
     </div>
   );
   }
