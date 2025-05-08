@@ -38,11 +38,11 @@ const Navbar = () => {
         </a>
         {/* -- -------- Desktop Menu -------- -- */}
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-lg px-12 py-3 ${isScroll ? "" : "bg-white shadow-sm bg-opacity-30 "} `}>
-          <li><Link className="font-Lexend" href="/">Home</Link></li>
-          <li><Link className="font-Lexend" href="/about">About</Link></li>
-          <li><Link className="font-Lexend" href="/planning">Planning</Link></li> 
-          <li><Link className="font-Lexend" href="/recipes">Recipes</Link></li>
-          <li><Link className="font-Lexend" href="/contact">Contact Us</Link></li>
+          <li><a className="font-Lexend" href="#top">Home</a></li>
+          <li><a className="font-Lexend" href="#about">About</a></li>
+          <li><a className="font-Lexend" href="#planning">Planning</a></li> 
+          <li><a className="font-Lexend" href="#recipes">Recipes</a></li>
+          <li><a className="font-Lexend" href="#contact">Contact Us</a></li>
         </ul>
 
         <div className="flex items-center gap-4">
@@ -56,7 +56,7 @@ const Navbar = () => {
             <span className="material-symbols-outlined">north_east </span></a>
 
           <button className="block md:hidden ml-3" onClick={openMenu}>
-            <Image src={assets.menu_black} alt="" className="w-6" />
+            <span class="material-symbols-outlined">menu</span>
           </button>
         </div>
 
@@ -65,8 +65,8 @@ const Navbar = () => {
         <ul ref={sideMenuRef} className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500">
 
           <div className="absolute right-6 top-6" onClick={closeMenu}>
-            <Image src={assets.close_black} alt="" className="w-5 cursor-pointer" />
-          </div>
+            <span class="material-symbols-outlined">close</span>
+         </div>
 
           <li><a className="font-Lexend" onClick={closeMenu} href="#top">Home</a></li>
           <li><a className="font-Lexend" onClick={closeMenu} href="#about">About</a></li>
