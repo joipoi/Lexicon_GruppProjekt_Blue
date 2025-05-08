@@ -2,7 +2,6 @@
 import Image from "next/image"
 import React, { useEffect, useRef, useState } from "react"
 import { assets } from "../assets/assets";
-import * as Icon from "@deemlol/next-icons";
 import Link from 'next/link';
 
 const Navbar = () => {
@@ -38,7 +37,7 @@ const Navbar = () => {
           <Image src={assets.logo}/*insert logo*/ alt='' className='w-28 alt="" rounded-3xl opacity-85 shadow-2xl cursor-pointer mr-14'/>
         </a>
         {/* -- -------- Desktop Menu -------- -- */}
-        <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScroll ? "" : "bg-white shadow-sm bg-opacity-30 "} `}>
+        <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-lg px-12 py-3 ${isScroll ? "" : "bg-white shadow-sm bg-opacity-30 "} `}>
           <li><Link className="font-Lexend" href="/">Home</Link></li>
           <li><Link className="font-Lexend" href="/about">About</Link></li>
           <li><Link className="font-Lexend" href="/planning">Planning</Link></li> 
@@ -49,11 +48,12 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
 
           <button>
-            <Icon.Moon  size={28} color="black"/>
+            <span class="material-symbols-outlined">dark_mode</span>
           </button>
 
           <a
-            href="#contact" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Lexend">Contact<Icon.ArrowUpRight size={28} color="black"/></a>
+            href="#contact" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-lg ml-4 font-Lexend">Contact
+            <span className="material-symbols-outlined">north_east </span></a>
 
           <button className="block md:hidden ml-3" onClick={openMenu}>
             <Image src={assets.menu_black} alt="" className="w-6" />
