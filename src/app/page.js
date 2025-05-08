@@ -9,6 +9,7 @@ import Recipes from "./recipes/page";
 export default function Home() {
     return (
       <>
+      <Navbar />
       <About />
       <Contact />
       <Recipes />

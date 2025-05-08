@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Recipe = ({ image, name, ingredients, instructions, nutrition }) => {
+const Recipe = ({ id, image, name, ingredients, instructions, nutrition }) => {
   return (
     <div>
-      <img src={image} alt={name} />
+      <a href={"/recipe/" + id}>
+      <img width="400px" height="400px" src={image} alt={name} />
+       </a>
 
       <h2>{name}</h2>
 

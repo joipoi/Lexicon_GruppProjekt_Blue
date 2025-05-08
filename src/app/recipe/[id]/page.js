@@ -1,13 +1,16 @@
 'use client';
-import Recipe from "../../componenets/Recipe";
+import { useParams } from 'next/navigation';
+import RecipeCard from "../../../componenets/Recipe"
 
-export default function Recipes() {
-    
+export default function Recipe() {
+  const params = useParams();
+  const recipeID = params.id;
+
   const fakeRecipes = [
     {
       id: '1',
       name: 'Spaghetti Bolognese',
-      image: '/frukost/ID-17.png',
+      image: '/frukost//ID-17.png',
       ingredients: ['Spaghetti', 'Ground beef', 'Tomato sauce'],
       instructions: ['Cook pasta', 'Cook beef', 'Mix with sauce'],
       nutrition: { Calories: '600 kcal', Protein: '25g', Carbs: '70g', Fat: '20g' },
@@ -30,13 +33,12 @@ export default function Recipes() {
     },
   ];
 
-    return (
-      <>
-    <p>in recipes</p>
-    <Recipe {...fakeRecipes[0]} />
-    <Recipe {...fakeRecipes[1]} />
-    <Recipe {...fakeRecipes[2]} />
-      
-      </>
-    );
+  const currentRecipe = fakeRecipes.find(recipe => recipe.id === recipeID);
+
+  return (
+    <div>
+      <h1>User Page</h1>
+      <RecipeCard {...currentRecipe} />
+    </div>
+  );
   }
