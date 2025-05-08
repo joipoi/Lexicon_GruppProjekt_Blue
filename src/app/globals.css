@@ -9,3 +9,25 @@
   font-weight: 400;
   font-style: normal;
 }
+
+@theme {
+  --color*: initial;
+  --color-cream: #FFF8F0;       /* Light warm background (AAA text contrast) */
+  --color-parchment: #F3E9DC;  	/* Cards/modals */
+  --color-umber: #3A3226;    	  /* Primary text (headers, dark UI) */
+  --color-mushroom: #8C7B6B;   	/* Secondary text */
+
+  /* Core Accents */
+
+--color-terracotta: #B5694D; 	 /* Primary CTA (adjusted for better contrast) */
+--color-sage: #8A9B7E;       		 /* Secondary CTA (darker for accessibility) */
+--color-honey: #D4A55E;       	/* Highlights */
+
+  /* Semantic Colors */
+
+--color-tomato: #C45C3D;     	 /* Destructive actions (delete) */
+--color-basil: #5C6D54;       		/* Success/confirm actions */
+--color-sky: #7D9DAD;         		/* Info alerts (optional) */
+
+  
+}
