@@ -37,11 +37,11 @@ const Navbar = () => {
         </a>
         {/* -- -------- Desktop Menu -------- -- */}
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-lg px-12 py-3 ${isScroll ? "" : "bg-white shadow-sm bg-opacity-30 "} `}>
-          <li><a className="font-Lexend" href="#top">Home</a></li>
-          <li><a className="font-Lexend" href="#about">About</a></li>
-          <li><a className="font-Lexend" href="#planning">Planning</a></li> 
-          <li><a className="font-Lexend" href="#recipes">Recipes</a></li>
-          <li><a className="font-Lexend" href="#contact">Contact Us</a></li>
+          <li><a className="font-Lexend" href="#top">Hem</a></li>
+          <li><a className="font-Lexend" href="#about">Om Oss</a></li>
+          <li><a className="font-Lexend" href="#planning">Plannering</a></li> 
+          <li><a className="font-Lexend" href="#recipes">Recept</a></li>
+          <li><a className="font-Lexend" href="#contact">Kontakta Oss</a></li>
         </ul>
 
         <div className="flex items-center gap-4">
@@ -67,11 +67,11 @@ const Navbar = () => {
             <span class="material-symbols-outlined">close</span>
          </div>
 
-          <li><a className="font-Lexend" onClick={closeMenu} href="#top">Home</a></li>
-          <li><a className="font-Lexend" onClick={closeMenu} href="#about">About</a></li>
-          <li><a className="font-Lexend" onClick={closeMenu} href="#recipes">Recipes</a></li>
-          <li><a className="font-Lexend" onClick={closeMenu} href="#planning">Planning</a></li>
-          <li><a className="font-Lexend" onClick={closeMenu} href="#contact">Contact Ue</a></li>
+          <li><a className="font-Lexend" onClick={closeMenu} href="#top">Hem</a></li>
+          <li><a className="font-Lexend" onClick={closeMenu} href="#about">Om Oss</a></li>
+          <li><a className="font-Lexend" onClick={closeMenu} href="#recipes">Recept</a></li>
+          <li><a className="font-Lexend" onClick={closeMenu} href="#planning">Plannering</a></li>
+          <li><a className="font-Lexend" onClick={closeMenu} href="#contact">Kontakta Oss</a></li>
         </ul>
       </nav>
     </>
