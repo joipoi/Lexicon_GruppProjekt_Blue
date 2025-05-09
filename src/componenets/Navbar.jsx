@@ -1,3 +1,4 @@
+'use client';
 
 import Image from "next/image"
 import React, { useEffect, useRef, useState } from "react"
@@ -75,6 +76,7 @@ const Navbar = () => {
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#recipes">Recept</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#planning">Plannering</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#contact">Kontakta Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/login">Logga In</a></li>
         </ul>
       </nav>
     </>
