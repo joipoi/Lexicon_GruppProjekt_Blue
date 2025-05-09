@@ -9,7 +9,7 @@ const Planning = () => {
        <div className="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
           <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Lexend">
             Plannering</h3>
-            <p className="max-w-2xl mx-auto font-Ovo">
+            <p className="max-w-2xl mx-auto font-Lexend">
               Recepthantering
               Under "Recepthantering" kan du:
               Visa recept med detaljerad information som titel, beskrivning, tillagningstid och svårighetsgrad.
