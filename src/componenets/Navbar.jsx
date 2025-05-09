@@ -44,6 +44,7 @@ const Navbar = () => {
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#planning">Plannering</a></li> 
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#recipes">Recept</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#contact">Kontakta Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#login">Logga In</a></li>
         </ul>
         {/* -- -------- Right Section -------- -- */}
         <div className="flex items-center gap-4">

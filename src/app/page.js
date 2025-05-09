@@ -6,6 +6,7 @@ import About from "./about/page";
 import Contact from "./contact/page";
 import Planning from "./planning/page";
 import Recipes from "./recipes/page";
+import LoginForm from "../componenets/LoginForm";
 
 export default function Home() {
     return (
@@ -16,6 +17,7 @@ export default function Home() {
       <Recipes />
       <Planning />
       <Contact />
+      <LoginForm />
       </>
     );
   }
