@@ -1,5 +1,5 @@
 'use client';
-import Recipe from "../../componenets/RecipeCard";
+import RecipeSearch from "../../componenets/RecipeSearch";
 
 import React from 'react';
 
@@ -7,7 +7,7 @@ const Recipes = () => {
   // Define the recipe data as an array
   const fakeRecipes = [
     {
-      id: '3',
+      id: '1',
       name: 'Yogurt med bär',
       image: '/frukost//ID-17.png',
       ingredients: ['Yogurt', 'Granola', 'bär'],
@@ -17,7 +17,7 @@ const Recipes = () => {
       difficulty: 2
     },
     {
-      id: '3',
+      id: '2',
       name: 'Knäckebröd',
       image: '/frukost//ID-1.png',
       ingredients: ['knäckebröd', 'Pålägg'],
@@ -58,12 +58,16 @@ const Recipes = () => {
         </p>
       </div>
       <p className="text-center text-lg font-semibold mt-8">Förslag:</p>
-      {/* Render each recipe using the Recipe component */}
+      {/* Render each recipe using the Recipe component 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
         {fakeRecipes.map((temp) => (
         <Recipe key={temp.id} recipe={temp} />
         ))}
+        
       </div>
+      */}
+      <RecipeSearch />
+
     </div>
   );
 };

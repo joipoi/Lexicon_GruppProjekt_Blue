@@ -1,6 +1,7 @@
 'use client';
 import { useParams } from 'next/navigation';
 import RecipeCard from "../../../componenets/RecipeCard"
+import ShoppingList from "../../../componenets/ShoppingList";
 
 export default function Recipe() {
   const params = useParams();
@@ -8,17 +9,18 @@ export default function Recipe() {
 
   const fakeRecipes = [
     {
-      id: '3',
+      id: '1',
       name: 'Yogurt med bär',
       image: '/frukost//ID-17.png',
       ingredients: ['Yogurt', 'Granola', 'bär'],
       instructions: ['Dela Banan', 'Blanda ihop'],
       nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
       cookTime: '40min',
-      difficulty: 2
+      difficulty: 2,
+      category: "frukost"
     },
     {
-      id: '3',
+      id: '2',
       name: 'Knäckebröd',
       image: '/frukost//ID-1.png',
       ingredients: ['knäckebröd', 'Pålägg'],
@@ -45,6 +47,7 @@ export default function Recipe() {
     <div>
       <h1>User Page</h1>
       <RecipeCard recipe={currentRecipe} />
+      <ShoppingList ingredients={currentRecipe.ingredients} />
     </div>
   );
   }
