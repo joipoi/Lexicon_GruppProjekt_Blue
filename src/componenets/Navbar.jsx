@@ -49,10 +49,10 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
         {/* Dark Mode Button */}
           <button>
-            <span class="material-symbols-outlined text-umber hover:text-terracotta transition-colors">dark_mode</span>
+            <span className="material-symbols-outlined text-umber hover:text-terracotta transition-colors">dark_mode</span>
           </button>
           {/* Contact Button */}
-          <a href="#contact" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border-3 border-terracotta text-umber rounded-lg ml-4 font-Lexend hover:bg-terracotta hover:text-parchment transition-colors">Contact
+          <a href="#contact" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border-3 border-terracotta text-umber rounded-lg ml-4 font-Lexend hover:bg-terracotta hover:text-parchment transition-colors">Kontakt
             <span className="material-symbols-outlined">north_east </span></a>
 
           {/* Hamburger Menu Button */}
