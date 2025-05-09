@@ -1,7 +1,9 @@
 'use client';
 import { useParams } from 'next/navigation';
-import RecipeCard from "../../../componenets/RecipeCard"
-import ShoppingList from "../../../componenets/ShoppingList";
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import RecipeCard from '../../../componenets/RecipeCard';
+import ShoppingList from '../../../componenets/ShoppingList';
+import RecipePDF from '../../../componenets/RecipePDF';
 
 export default function Recipe() {
   const params = useParams();
@@ -45,9 +47,18 @@ export default function Recipe() {
 
   return (
     <div>
-      <h1>User Page</h1>
+      <h1>{currentRecipe.name}</h1>
       <RecipeCard recipe={currentRecipe} />
-      <ShoppingList ingredients={currentRecipe.ingredients} />
+   
+
+      <PDFDownloadLink
+        document={<RecipePDF recipe={currentRecipe} />}
+        fileName={`${currentRecipe.name}.pdf`}
+      >
+        {({ loading }) => (loading ? 'Generating PDF...' : 'Download as PDF')}
+      </PDFDownloadLink>
+
+     {/*<ShoppingList ingredients={currentRecipe.ingredients} />  */} 
     </div>
   );
   }
