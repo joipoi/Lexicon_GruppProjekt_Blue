@@ -1,12 +1,41 @@
 import React, { useState, useEffect } from 'react';
+import RecipeCard from './RecipeCard';
 
 // Fake data with categories
 const fakeRecipes = [
-  { id: 1, name: 'Spaghetti Bolognese', category: 'Pasta' },
-  { id: 2, name: 'Chicken Alfredo', category: 'Pasta' },
-  { id: 3, name: 'Beef Tacos', category: 'Mexican' },
-  { id: 4, name: 'Vegetarian Pizza', category: 'Pizza' },
-  { id: 5, name: 'Shrimp Fried Rice', category: 'Asian' },
+  {
+    id: '1',
+    name: 'Yogurt med bär',
+    image: '/frukost//ID-17.png',
+    ingredients: ['Yogurt', 'Granola', 'bär'],
+    instructions: ['Dela Banan', 'Blanda ihop'],
+    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
+    cookTime: '40min',
+    difficulty: 2,
+    category:"yogurt"
+  },
+  {
+    id: '2',
+    name: 'Knäckebröd',
+    image: '/frukost//ID-1.png',
+    ingredients: ['knäckebröd', 'Pålägg'],
+    instructions: ['Bre på smör', 'På med pålägg'],
+    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
+    cookTime: '10min',
+    difficulty: 3,
+    category:"knäckebröd"
+  },
+  {
+    id: '3',
+    name: 'Yogurt med granola och banan',
+    image: '/frukost//ID-2.png',
+    ingredients: ['Yogurt', 'Granola', 'Banan'],
+    instructions: ['Dela Banan', 'Blanda ihop'],
+    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
+    cookTime: '20min',
+    difficulty: 3,
+    category:"yogurt"
+  },
 ];
 
 // Unique categories
@@ -54,7 +83,7 @@ const RecipeSearch = () => {
 
       <ul>
         {filteredRecipes.map(recipe => (
-          <li key={recipe.id}>{recipe.name} ({recipe.category})</li>
+          <RecipeCard recipe={recipe} />
         ))}
       </ul>
     </div>

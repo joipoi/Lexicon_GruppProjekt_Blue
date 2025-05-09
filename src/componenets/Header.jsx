@@ -11,13 +11,13 @@ const Header = () => {
               Hos oss får du inspiration, struktur och mer tid till det roliga i livet!
               <br />
               Med vår tjänst kan du:
-              <ul className="list-disc list-inside mt-2">
-                <li>✔ Planera veckans måltider - slipp den sista-minuten-paniken.</li>
-                <li>✔ Generera smarta inköpslistor - inget mer glömska i affären.</li>
-                <li>✔ Upptäck nya recept - perfekt för både vardag och fest.</li>
-                <li>✔ Följ dina näringsbehov - ät smartare utan krångel.     </li>
+              <ul className="list-none list-inside mt-2">
+                <p>✔ Planera veckans måltider - slipp den sista-minuten-paniken.</p>
+                <p>✔ Generera smarta inköpslistor - inget mer glömska i affären.</p>
+                <p>✔ Upptäck nya recept - perfekt för både vardag och fest.</p>
+                <p>✔ Följ dina näringsbehov - ät smartare utan krångel.     </p>
               </ul>
-            Spara tid, äta godare och minska svinnet - en måltid i taget.
+              Spara tid, äta godare och minska svinnet - en måltid i taget.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
                 <a href="#planning" className="px-10 py-3 border-3 border-terracotta rounded-lg bg-terracotta text-parchment flex items-center gap-2 hover:bg-cream hover:text-umber transition-colors"

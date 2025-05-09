@@ -1,6 +1,9 @@
 'use client';
 import { useParams } from 'next/navigation';
-import RecipeCard from "../../../componenets/RecipeCard"
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import RecipeCard from '../../../componenets/RecipeCard';
+import ShoppingList from '../../../componenets/ShoppingList';
+import RecipePDF from '../../../componenets/RecipePDF';
 
 export default function Recipe() {
   const params = useParams();
@@ -8,17 +11,18 @@ export default function Recipe() {
 
   const fakeRecipes = [
     {
-      id: '3',
+      id: '1',
       name: 'Yogurt med bär',
       image: '/frukost//ID-17.png',
       ingredients: ['Yogurt', 'Granola', 'bär'],
       instructions: ['Dela Banan', 'Blanda ihop'],
       nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
       cookTime: '40min',
-      difficulty: 2
+      difficulty: 2,
+      category: "frukost"
     },
     {
-      id: '3',
+      id: '2',
       name: 'Knäckebröd',
       image: '/frukost//ID-1.png',
       ingredients: ['knäckebröd', 'Pålägg'],
@@ -43,8 +47,18 @@ export default function Recipe() {
 
   return (
     <div>
-      <h1>User Page</h1>
+      <h1>{currentRecipe.name}</h1>
       <RecipeCard recipe={currentRecipe} />
+   
+
+      <PDFDownloadLink
+        document={<RecipePDF recipe={currentRecipe} />}
+        fileName={`${currentRecipe.name}.pdf`}
+      >
+        {({ loading }) => (loading ? 'Generating PDF...' : 'Download as PDF')}
+      </PDFDownloadLink>
+
+     {/*<ShoppingList ingredients={currentRecipe.ingredients} />  */} 
     </div>
   );
   }

@@ -29,13 +29,13 @@ const Navbar = () => {
     <>
       {/* -- -------- Header Background -------- -- */}
       <div className="fixed top-0 right-0 w-full opacity-15 bg-z-10 translate-y-[-15%] bg-cream">
-        <Image src={assets.header_bg_color} alt="" className="w-full" />
+        {/* <Image src={assets.header_bg_color} alt="" className="w-full" /> */}
       </div>
       {/* -- -------- Navbar -------- -- */}
       <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScroll ? "bg-parchment shadow-sm" : ""}`}>
         {/* -- -------- Logo -------- -- */}
         <a href="#top">
-          <Image src={assets.fijoka_logo_terracota} alt='' className='w-38 alt="" cursor-pointer mr-14'/>
+          <Image src={assets.LogoTerracote} alt='' className='w-38 alt="" cursor-pointer mr-14'/>
         </a>
         {/* -- -------- Desktop Menu -------- -- */}
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-lg px-12 py-3 ${isScroll ? "" : "bg-parchment shadow-sm bg-opacity-30 "} `}>
