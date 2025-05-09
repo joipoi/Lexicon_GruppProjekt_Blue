@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import {
   Box,
@@ -43,11 +45,11 @@ export default function LoginForm() {
     <Box
       sx={{
         height: '100vh',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: '#FFFFFF', 
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        fontFamily: 'Times New Roman, serif',
+        fontFamily: 'Lexend, sans-serif',  
       }}
     >
       <Paper
@@ -59,9 +61,10 @@ export default function LoginForm() {
           width: '100%',
           maxWidth: 360,
           borderRadius: 2,
+          backgroundColor: 'var(--color-parchment)',  
         }}
       >
-        <Typography variant="h4" mb={3} color="text.primary">
+        <Typography variant="h4" mb={3} color="var(--color-umber)">
           Sign In
         </Typography>
 
@@ -76,6 +79,23 @@ export default function LoginForm() {
           margin="normal"
           type="email"
           required
+          InputLabelProps={{
+            style: { color: 'var(--color-mushroom)' },  
+          }}
+          sx={{
+            input: { color: 'var(--color-umber)' },
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'var(--color-umber)',  
+              },
+              '&:hover fieldset': {
+                borderColor: 'var(--color-terracotta)',  
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'var(--color-terracotta)',  
+              },
+            },
+          }}
         />
 
         <TextField
@@ -88,6 +108,23 @@ export default function LoginForm() {
           fullWidth
           margin="normal"
           type={showPassword ? 'text' : 'password'}
+          InputLabelProps={{
+            style: { color: 'var(--color-mushroom)' },  
+          }}
+          sx={{
+            input: { color: 'var(--color-umber)' },  
+            '& .MuiOutlinedInput-root': {
+              '& fieldset': {
+                borderColor: 'var(--color-umber)', 
+              },
+              '&:hover fieldset': {
+                borderColor: 'var(--color-terracotta)', 
+              },
+              '&.Mui-focused fieldset': {
+                borderColor: 'var(--color-terracotta)',  
+              },
+            },
+          }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">
@@ -108,19 +145,26 @@ export default function LoginForm() {
           color="primary"
           type="submit"
           fullWidth
-          sx={{ mt: 1, mb: 2 }}
+          sx={{
+            mt: 1,
+            mb: 2,
+            backgroundColor: 'var(--color-terracotta)',  
+            '&:hover': {
+              backgroundColor: 'var(--color-sage)',  
+            },
+          }}
         >
           Sign In
         </Button>
 
         <Accordion sx={{ mt: 3 }}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-            <Typography>Need Help?</Typography>
+            <Typography color="var(--color-umber)">Need Help?</Typography>
           </AccordionSummary>
           <AccordionDetails>
             <Stack spacing={1}>
-              <Link href="/auth/forgot-password">Forgot Password</Link>
-              <Link href="/support/guest-contact?source=login">
+              <Link href="/auth/forgot-password" sx={{ color: 'var(--color-umber)' }}>Forgot Password</Link>
+              <Link href="/support/guest-contact?source=login" sx={{ color: 'var(--color-umber)' }}>
                 Other Issues with Sign-In
               </Link>
             </Stack>
