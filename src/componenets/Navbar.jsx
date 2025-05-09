@@ -29,7 +29,7 @@ const Navbar = () => {
     <>
       {/* -- -------- Header Background -------- -- */}
       <div className="fixed top-0 right-0 w-full opacity-15 bg-z-10 translate-y-[-15%] bg-cream">
-        <Image src={assets.header_bg_color} alt="" className="w-full" />
+        {/* <Image src={assets.header_bg_color} alt="" className="w-full" /> */}
       </div>
       {/* -- -------- Navbar -------- -- */}
       <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScroll ? "bg-parchment shadow-sm" : ""}`}>
