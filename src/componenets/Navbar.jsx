@@ -41,11 +41,12 @@ const Navbar = () => {
         {/* -- -------- Desktop Menu -------- -- */}
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-lg px-12 py-3 ${isScroll ? "" : "bg-parchment shadow-sm bg-opacity-30 "} `}>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#top">Hem</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#about">Om Oss</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#planning">Plannering</a></li> 
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/about">Om Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/planning">Plannering</a></li> 
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#recipes">Recept</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#contact">Kontakta Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/contact">Kontakta Oss</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/login">Logga In</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#logout">Logga Ut</a></li>          
         </ul>
         {/* -- -------- Right Section -------- -- */}
         <div className="flex items-center gap-4">
@@ -72,11 +73,12 @@ const Navbar = () => {
          </div>
 
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#top">Hem</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#about">Om Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/about">Om Oss</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#recipes">Recept</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#planning">Plannering</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#contact">Kontakta Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/planning">Plannering</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/contact">Kontakta Oss</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/login">Logga In</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#logout">Logga Ut</a></li>
         </ul>
       </nav>
     </>
