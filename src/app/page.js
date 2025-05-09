@@ -13,9 +13,9 @@ export default function Home() {
       <Navbar />
       <Header />
       <About />
-      <Contact />
       <Recipes />
       <Planning />
+      <Contact />
       </>
     );
   }

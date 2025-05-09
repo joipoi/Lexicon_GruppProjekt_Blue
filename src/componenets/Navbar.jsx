@@ -66,7 +66,7 @@ const Navbar = () => {
         <ul ref={sideMenuRef} className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-cream transition duration-500">
 
           <div className="absolute right-6 top-6 text-umber hover:text-terracotta transition-colors" onClick={closeMenu}>
-            <span class="material-symbols-outlined">close</span>
+            <span className="material-symbols-outlined">close</span>
          </div>
 
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#top">Hem</a></li>
