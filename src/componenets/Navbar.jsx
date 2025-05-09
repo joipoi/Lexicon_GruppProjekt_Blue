@@ -1,9 +1,7 @@
 
 import Image from "next/image"
 import React, { useEffect, useRef, useState } from "react"
-import { assets } from "../assets/assets";
-import * as Icon from "@deemlol/next-icons";
-import Link from 'next/link';
+import { assets } from "../assets/assets"
 
 const Navbar = () => {
 
@@ -29,50 +27,53 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="fixed top-0 right-0 w-full opacity-15 bg -z-10 translate-y-[-15%]">
-        <Image src={assets.header_bg_color} alt="" className="w-full" />
+      {/* -- -------- Header Background -------- -- */}
+      <div className="fixed top-0 right-0 w-full opacity-15 bg-z-10 translate-y-[-15%] bg-cream">
+        {/* <Image src={assets.header_bg_color} alt="" className="w-full" /> */}
       </div>
-
-      <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScroll ? "bg-white shadow-sm" : ""}`}>
+      {/* -- -------- Navbar -------- -- */}
+      <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScroll ? "bg-parchment shadow-sm" : ""}`}>
+        {/* -- -------- Logo -------- -- */}
         <a href="#top">
-          <Image src={assets.logo}/*insert logo*/ alt='' className='w-28 alt="" rounded-3xl opacity-85 shadow-2xl cursor-pointer mr-14'/>
+          <Image src={assets.LogoTerracote} alt='' className='w-38 alt="" cursor-pointer mr-14'/>
         </a>
         {/* -- -------- Desktop Menu -------- -- */}
-        <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-full px-12 py-3 ${isScroll ? "" : "bg-white shadow-sm bg-opacity-30 "} `}>
-          <li><Link className="font-Lexend" href="/">Home</Link></li>
-          <li><Link className="font-Lexend" href="/about">About</Link></li>
-          <li><Link className="font-Lexend" href="/planning">Planning</Link></li> 
-          <li><Link className="font-Lexend" href="/recipes">Recipes</Link></li>
-          <li><Link className="font-Lexend" href="/contact">Contact Us</Link></li>
+        <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-lg px-12 py-3 ${isScroll ? "" : "bg-parchment shadow-sm bg-opacity-30 "} `}>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#top">Hem</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#about">Om Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#planning">Plannering</a></li> 
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#recipes">Recept</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#contact">Kontakta Oss</a></li>
         </ul>
-
+        {/* -- -------- Right Section -------- -- */}
         <div className="flex items-center gap-4">
-
+        {/* Dark Mode Button */}
           <button>
-            <Icon.Moon  size={28} color="black"/>
+            <span className="material-symbols-outlined text-umber hover:text-terracotta transition-colors">dark_mode</span>
           </button>
+          {/* Contact Button */}
+          <a href="#contact" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border-3 border-terracotta text-umber rounded-lg ml-4 font-Lexend hover:bg-terracotta hover:text-parchment transition-colors">Kontakt
+            <span className="material-symbols-outlined">north_east </span></a>
 
-          <a
-            href="#contact" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border border-gray-500 rounded-full ml-4 font-Lexend">Contact<Icon.ArrowUpRight size={28} color="black"/></a>
-
-          <button className="block md:hidden ml-3" onClick={openMenu}>
-            <Image src={assets.menu_black} alt="" className="w-6" />
+          {/* Hamburger Menu Button */}
+          <button className="block md:hidden ml-3 text-umber hover:text-terracotta transition-colors" onClick={openMenu}>
+            <span className="material-symbols-outlined">menu</span>
           </button>
         </div>
 
         {/* -- -------- Mobile Menu -------- -- */}
 
-        <ul ref={sideMenuRef} className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-rose-50 transition duration-500">
+        <ul ref={sideMenuRef} className="flex md:hidden flex-col gap-4 py-20 px-10 fixed -right-64 top-0 bottom-0 w-64 z-50 h-screen bg-cream transition duration-500">
 
-          <div className="absolute right-6 top-6" onClick={closeMenu}>
-            <Image src={assets.close_black} alt="" className="w-5 cursor-pointer" />
-          </div>
+          <div className="absolute right-6 top-6 text-umber hover:text-terracotta transition-colors" onClick={closeMenu}>
+            <span class="material-symbols-outlined">close</span>
+         </div>
 
-          <li><a className="font-Lexend" onClick={closeMenu} href="#top">Home</a></li>
-          <li><a className="font-Lexend" onClick={closeMenu} href="#about">About</a></li>
-          <li><a className="font-Lexend" onClick={closeMenu} href="#recipes">Recipes</a></li>
-          <li><a className="font-Lexend" onClick={closeMenu} href="#planning">Planning</a></li>
-          <li><a className="font-Lexend" onClick={closeMenu} href="#contact">Contact Ue</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#top">Hem</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#about">Om Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#recipes">Recept</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#planning">Plannering</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#contact">Kontakta Oss</a></li>
         </ul>
       </nav>
     </>
