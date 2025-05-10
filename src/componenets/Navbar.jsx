@@ -3,10 +3,23 @@
 import Image from "next/image"
 import React, { useEffect, useRef, useState } from "react"
 import { assets } from "../assets/assets"
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../lib/firebase';
+import Logout from './Logout';
 
 const Navbar = () => {
 
-    const [isScroll, setIsScroll] = useState(false)
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      setUser(firebaseUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  const [isScroll, setIsScroll] = useState(false)
   const sideMenuRef = useRef();
 
   const openMenu = ()=>{
@@ -45,8 +58,12 @@ const Navbar = () => {
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/planning">Plannering</a></li> 
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#recipes">Recept</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/contact">Kontakta Oss</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/login">Logga In</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#logout">Logga Ut</a></li>          
+          {!user && (
+            <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/login">Logga In</a></li>
+          )}
+          {user && (
+            <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#logout">Logga Ut</a></li>          
+          )}
         </ul>
         {/* -- -------- Right Section -------- -- */}
         <div className="flex items-center gap-4">

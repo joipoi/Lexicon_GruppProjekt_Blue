@@ -1,5 +1,8 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '../lib/firebase';
 import React, { useState } from 'react';
 import {
   Box,
@@ -20,6 +23,8 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function LoginForm() {
+  const router = useRouter();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
@@ -34,10 +39,22 @@ export default function LoginForm() {
     return Object.values(tempErrors).every((x) => x === '');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate()) {
-      alert('Form submitted!');
+    if (!validate()) return;
+  
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log('User signed in:', user.email);
+  
+      router.push('/contact');
+    } catch (error) {
+      console.error('Login failed:', error.code, error.message);
+      setErrors((prev) => ({
+        ...prev,
+        password: 'Invalid email or password',
+      }));
     }
   };
 
