@@ -5,9 +5,12 @@ import React, { useEffect, useRef, useState } from "react"
 import { assets } from "../assets/assets"
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../lib/firebase';
-import Logout from './Logout';
+import { handleLogout } from './Logout';
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
+
+  const router = useRouter();
 
   const [user, setUser] = useState(null);
 
@@ -62,7 +65,7 @@ const Navbar = () => {
             <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/login">Logga In</a></li>
           )}
           {user && (
-            <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#logout">Logga Ut</a></li>          
+            <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#logout" onClick={(e) => { e.preventDefault(); handleLogout(router); }}>Logga Ut</a></li>          
           )}
         </ul>
         {/* -- -------- Right Section -------- -- */}
