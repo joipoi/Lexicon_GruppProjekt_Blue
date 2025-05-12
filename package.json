@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@cloudinary/react": "^1.14.1",
+    "@cloudinary/url-gen": "^1.21.0",
     "@deemlol/next-icons": "^0.1.9",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
@@ -15,7 +17,13 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.9.0",
+    "cloudinary": "^2.6.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
     "firebase": "^11.7.1",
+    "multer": "^1.4.5-lts.2",
     "next": "^15.3.2",
     "postcss": "^8.5.3",
     "react": "^19.1.0",
@@ -48,5 +56,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "- Go to folder you want project in\r - git clone https://github.com/joipoi/Lexicon_GruppProjekt_Blue.git\r - cd Lexicon_GruppProjekt_Blue\r - npm install\r - npm start",
+  "main": "next.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joipoi/Lexicon_GruppProjekt_Blue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joipoi/Lexicon_GruppProjekt_Blue/issues"
+  },
+  "homepage": "https://github.com/joipoi/Lexicon_GruppProjekt_Blue#readme"
 }
