@@ -10,6 +10,7 @@ const Header = () => {
               Slösar du tid på att planera middagar eller handla utan riktig lista? <br />
               Hos oss får du inspiration, struktur och mer tid till det roliga i livet!
               <br />
+                </p>
               Med vår tjänst kan du:
               <ul className="list-none list-inside mt-2">
                 <p>✔ Planera veckans måltider - slipp den sista-minuten-paniken.</p>
@@ -18,7 +19,7 @@ const Header = () => {
                 <p>✔ Följ dina näringsbehov - ät smartare utan krångel.     </p>
               </ul>
               Spara tid, äta godare och minska svinnet - en måltid i taget.
-            </p>
+          
             <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
                 <a href="#planning" className="px-10 py-3 border-3 border-terracotta rounded-lg bg-terracotta text-parchment flex items-center gap-2 hover:bg-cream hover:text-umber transition-colors"
                 >Kom igång nu - skapa din första veckomeny! <span className="material-symbols-outlined">table </span>
