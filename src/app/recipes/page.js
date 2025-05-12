@@ -1,31 +1,42 @@
 'use client';
-import React, { useEffect, useState } from 'react';
-import { collection, getDocs } from 'firebase/firestore';
-import { db } from '../../lib/firebase';
-import RecipeSearch from '../../componenets/RecipeSearch';
-import UploadRecipe from '../../componenets/UploadRecipe';
-import { useRouter } from 'next/navigation';
+import RecipeSearch from "../../componenets/RecipeSearch";
+
+import React from 'react';
 
 const Recipes = () => {
-  const [recipes, setRecipes] = useState([]);
-  const router = useRouter();
-
-  useEffect(() => {
-    const fetchRecipes = async () => {
-      try {
-        const querySnapshot = await getDocs(collection(db, 'recipes'));
-        const fetchedRecipes = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data(),
-        }));
-        setRecipes(fetchedRecipes);
-      } catch (error) {
-        console.error('Error fetching recipes: ', error);
-      }
-    };
-
-    fetchRecipes();
-  }, []);
+  // Define the recipe data as an array
+  const fakeRecipes = [
+    {
+      id: '1',
+      name: 'Yogurt med bär',
+      image: '/frukost//ID-17.png',
+      ingredients: ['Yogurt', 'Granola', 'bär'],
+      instructions: ['Dela Banan', 'Blanda ihop'],
+      nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
+      cookTime: '40min',
+      difficulty: 2
+    },
+    {
+      id: '2',
+      name: 'Knäckebröd',
+      image: '/frukost//ID-1.png',
+      ingredients: ['knäckebröd', 'Pålägg'],
+      instructions: ['Bre på smör', 'På med pålägg'],
+      nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
+      cookTime: '10min',
+      difficulty: 3
+    },
+    {
+      id: '3',
+      name: 'Yogurt med granola och banan',
+      image: '/frukost//ID-2.png',
+      ingredients: ['Yogurt', 'Granola', 'Banan'],
+      instructions: ['Dela Banan', 'Blanda ihop'],
+      nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
+      cookTime: '20min',
+      difficulty: 3
+    },
+  ];
 
   return (
     <div id="recipes" className="w-full px-[12%] py-10 scroll-mt-20">
@@ -45,47 +56,17 @@ const Recipes = () => {
           veckan. Njut av lunchen med våra noggrant utvalda recept!
         </p>
       </div>
-
       <p className="text-center text-lg font-semibold mt-8">Förslag:</p>
-
+      {/* Render each recipe using the Recipe component 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
-        {recipes.length > 0 ? (
-          recipes.map((recipe) => (
-            <div key={recipe.id} className="recipe-card border p-4 rounded-lg shadow-lg">
-              <img
-                src={recipe.image}
-                alt={recipe.name}
-                className="w-full h-48 object-cover rounded-t-lg"
-              />
-              <h4 className="text-xl font-semibold mt-4">{recipe.name}</h4>
-              <p className="text-gray-600">{recipe.cookTime}</p>
-              <ul className="mt-2">
-                <li><strong>Calories:</strong> {recipe.nutrition.Calories}</li>
-                <li><strong>Protein:</strong> {recipe.nutrition.Protein}</li>
-                <li><strong>Carbs:</strong> {recipe.nutrition.Carbs}</li>
-                <li><strong>Fat:</strong> {recipe.nutrition.Fat}</li>
-              </ul>
-              <div className="mt-4">
-                <button
-                  className="bg-blue-500 text-white py-2 px-4 rounded"
-                  onClick={() => router.push(`/recipes/${recipe.id}`)}
-                >
-                  View Recipe
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p>No recipes available</p>
-        )}
+        {fakeRecipes.map((temp) => (
+        <Recipe key={temp.id} recipe={temp} />
+        ))}
+        
       </div>
-
-      <div className="mt-20">
-        <h2 className="text-center text-2xl font-bold mb-6">Lägg till nytt recept</h2>
-        <UploadRecipe />
-      </div>
-
+      */}
       <RecipeSearch />
+
     </div>
   );
 };

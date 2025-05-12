@@ -1,31 +1,40 @@
 import React from 'react';
 
-const RecipeCard = ({ recipe }) => {
+const RecipeCard = ({ recipe, onOpenPanel  }) => {
+  const handleAddToMenu = () => {
+    const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
+    if (!storedMenu.includes(recipe.id)) {
+      const updatedMenu = [...storedMenu, recipe.id];
+      localStorage.setItem('veckoMeny', JSON.stringify(updatedMenu));
+    }
+  };
+
   return (
-   
-    <div
-            key={recipe.id}
-            className="border rounded-lg shadow-lg p-4 flex flex-col items-center text-center bg-white"
+    <div key={recipe.id} className="recipe-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+      <img src={recipe.image} alt={recipe.name} className="w-full h-48 object-cover" />
+      <div className="p-4">
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-xl font-semibold">{recipe.name}</h3>
+          <span className="bg-[#D4A55E] text-[#3A3226] text-xs px-2 py-1 rounded-full">{recipe.category}</span>
+        </div>
+        <div className="flex items-center text-sm text-[#8C7B6B] mb-3">
+          <span className="mr-3">🕒 {recipe.cookTime}</span>
+          <span>{recipe.protein}</span>
+        </div>
+        <p className="text-sm mb-4">{recipe.description}</p>
+        <div className="flex justify-between items-center">
+          <button className="text-sm font-medium" onClick={() => onOpenPanel(recipe)}>
+           Se recept
+          </button>
+          <button
+            onClick={handleAddToMenu}
+            className="add-to-plan text-sm px-3 py-1 rounded-lg border border-[#8A9B7E] hover:bg-[#8A9B7E] hover:text-white transition-colors"
           >
-           <a href={'/recipe/' + recipe.id}>
-            <img
-              src={recipe.image}
-              alt={recipe.name}
-              className="w-full h-48 object-cover rounded-md mb-4"
-            />
-             </a>
-            <h4 className="text-xl font-bold mb-2">{recipe.name}</h4>
-            <p className="text-sm text-gray-600 mb-2">
-              <strong>Ingredients:</strong> {recipe.ingredients.join(', ')}
-            </p>
-            <p className="text-sm text-gray-600 mb-2">
-              <strong>Instructions:</strong> {recipe.instructions.join('. ')}
-            </p>
-            <p className="text-sm text-gray-600">
-              <strong>Nutrition:</strong> Calories: {recipe.nutrition.Calories}, Protein: {recipe.nutrition.Protein}, Carbs: {recipe.nutrition.Carbs}, Fat: {recipe.nutrition.Fat}
-            </p>
-          </div>
-         
+            Lägg till i meny
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 

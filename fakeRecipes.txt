@@ -1,16 +1,4 @@
-'use client';
-import { useParams } from 'next/navigation';
-import { PDFDownloadLink } from '@react-pdf/renderer';
-import RecipeCard from '../../../componenets/RecipeCard';
-import ShoppingList from '../../../componenets/ShoppingList';
-import RecipePDF from '../../../componenets/RecipePDF';
-import FullRecipe from '../../../componenets/FullRecipe';
-
-export default function Recipe() {
-  const params = useParams();
-  const recipeID = params.id;
-
-const fakeRecipes = [
+[
   {
     id: '1',
     name: 'Yogurt med bär',
@@ -53,13 +41,13 @@ const fakeRecipes = [
     protein: "Beef",
     rating: 4
   },
-     {
+    {
     id: '4',
     name: 'Pasta Carbonara',
-    image: '/lunch/ID-112.png',
+    image: '/frukost//ID-2.png',
     ingredients: ['400 g spaghetti', '200 g pancetta', '3 äggulor', '50 g parmesan', 'Svartpeppar'],
-    instructions: ['Koka pastan enligt anvisning på förpackningen.', 
-      'Stek pancettan knaprig i en torr stekpanna.',
+    instructions: ['Koka pastan enligt anvisning på förpackningen.', '
+Stek pancettan knaprig i en torr stekpanna.',
 'Vispa ihop äggulor och riven parmesan i en skål.',
 'Häll av pastan och blanda snabbt med äggblandningen och pancettan.',
 'Krydda med svartpeppar och servera omedelbart.'],
@@ -71,21 +59,6 @@ const fakeRecipes = [
     protein: "Kyckling",
     rating: 4
   },
+
+
 ];
-
-  const currentRecipe = fakeRecipes.find(recipe => recipe.id === recipeID);
-
-  return (
-    <div>
-      <FullRecipe recipe={currentRecipe} />
-   
-
-      <PDFDownloadLink
-        document={<RecipePDF recipe={currentRecipe} />}
-        fileName={`${currentRecipe.name}.pdf`}
-      >
-        {({ loading }) => (loading ? 'Generating PDF...' : 'Download as PDF')}
-      </PDFDownloadLink>
-    </div>
-  );
-  }
