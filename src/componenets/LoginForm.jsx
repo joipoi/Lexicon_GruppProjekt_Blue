@@ -59,7 +59,7 @@ export default function LoginForm() {
   };
 
   return (
-    <Box
+    <Box 
       sx={{
         height: '100vh',
         backgroundColor: '#FFFFFF', 
@@ -81,7 +81,7 @@ export default function LoginForm() {
           backgroundColor: 'var(--color-parchment)',  
         }}
       >
-        <Typography variant="h4" mb={3} color="var(--color-umber)">
+        <Typography id="login" variant="h4" mb={3} color="var(--color-umber)">
           Sign In
         </Typography>
 
