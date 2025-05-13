@@ -20,7 +20,7 @@ const Header = () => {
               </ul>
               Spara tid, äta godare och minska svinnet - en måltid i taget.
           
-            <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
+            <div className="flex flex-col sm:flex-row items-center gap-3 mt-4 mb-4">
                 <a href="#planning" className="px-10 py-3 border-3 border-terracotta rounded-lg bg-terracotta text-parchment flex items-center gap-2 hover:bg-cream hover:text-umber transition-colors"
                 >Kom igång nu - skapa din första veckomeny! <span className="material-symbols-outlined">table </span>
                 </a>          

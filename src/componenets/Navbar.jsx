@@ -57,16 +57,10 @@ const Navbar = () => {
         {/* -- -------- Desktop Menu -------- -- */}
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-lg px-12 py-3 ${isScroll ? "" : "bg-parchment shadow-sm bg-opacity-30 "} `}>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#top">Hem</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#about">Om Oss</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#planning">Plannering</a></li> 
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#recipes">Recept</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#contact">Kontakta Oss</a></li>
-          {!user && (
-            <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#login">Logga In</a></li>
-          )}
-          {user && (
-            <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#logout" onClick={(e) => { e.preventDefault(); handleLogout(router); }}>Logga Ut</a></li>          
-          )}
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#about">Om Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#contact">Kontakt</a></li>
+          
         </ul>
         {/* -- -------- Right Section -------- -- */}
         <div className="flex items-center gap-4">
@@ -74,11 +68,16 @@ const Navbar = () => {
           <button>
             <span className="material-symbols-outlined text-umber hover:text-terracotta transition-colors">dark_mode</span>
           </button>
-          {/* Contact Button */}
-          <a href="#contact" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border-3 border-terracotta text-umber rounded-lg ml-4 font-Lexend hover:bg-terracotta hover:text-parchment transition-colors">Kontakt
+        {/* Login Button */}
+          {!user && (
+                     
+          <a href="#login" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border-3 border-terracotta text-umber rounded-lg ml-4 font-Lexend hover:bg-terracotta hover:text-parchment transition-colors">Logga In
             <span className="material-symbols-outlined">north_east </span></a>
-
-          {/* Hamburger Menu Button */}
+            )}
+          {user && (
+            <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#logout" onClick={(e) => { e.preventDefault(); handleLogout(router); }}>Logga Ut</a></li>          
+          )}
+        {/* Hamburger Menu Button */}
           <button className="block md:hidden ml-3 text-umber hover:text-terracotta transition-colors" onClick={openMenu}>
             <span className="material-symbols-outlined">menu</span>
           </button>
@@ -93,10 +92,10 @@ const Navbar = () => {
          </div>
 
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#top">Hem</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#about">Om Oss</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#recipes">Recept</a></li>
+                    
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#planning">Plannering</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#contact">Kontakta Oss</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#about">Om</a></li>
+          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#contact">Kontakt</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#login">Logga In</a></li>
           <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#logout">Logga Ut</a></li>
         </ul>
