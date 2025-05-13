@@ -3,6 +3,8 @@
 import React, { useState, useEffect } from 'react';
 import RecipeCard from './RecipeCard';
 import FullRecipe from './FullRecipe';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../lib/firebase'; 
 
 const fakeRecipes = [
   {
@@ -47,16 +49,18 @@ const fakeRecipes = [
     protein: "Beef",
     rating: 4
   },
-     {
+  {
     id: '4',
     name: 'Pasta Carbonara',
     image: '/lunch/ID-112.png',
     ingredients: ['400 g spaghetti', '200 g pancetta', '3 äggulor', '50 g parmesan', 'Svartpeppar'],
-    instructions: ['Koka pastan enligt anvisning på förpackningen.', 
+    instructions: [
+      'Koka pastan enligt anvisning på förpackningen.',
       'Stek pancettan knaprig i en torr stekpanna.',
-'Vispa ihop äggulor och riven parmesan i en skål.',
-'Häll av pastan och blanda snabbt med äggblandningen och pancettan.',
-'Krydda med svartpeppar och servera omedelbart.'],
+      'Vispa ihop äggulor och riven parmesan i en skål.',
+      'Häll av pastan och blanda snabbt med äggblandningen och pancettan.',
+      'Krydda med svartpeppar och servera omedelbart.'
+    ],
     nutrition: { Calories: '650 kcal', Protein: '25 g', Carbs: '75 g', Fat: '25 g' },
     cookTime: '30 min',
     difficulty: 3,
@@ -74,40 +78,64 @@ const RecipeSearch = () => {
   const [ingredient, setIngredient] = useState('');
   const [sortBy, setSortBy] = useState('popular');
   const [filteredRecipes, setFilteredRecipes] = useState([]);
+  const [firebaseRecipes, setFirebaseRecipes] = useState([]);
+
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
 
   useEffect(() => {
-    let results = fakeRecipes;
+    const fetchFirebaseRecipes = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'recipes'));
+        const recipesFromFirebase = querySnapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            rating: 0,
+            protein: data.protein || '',
+            image: data.image || '/placeholder.png',
+            ...data,
+          };
+        });
 
-    // Filter by name
+        setFirebaseRecipes(recipesFromFirebase);
+      } catch (error) {
+        console.error('Error fetching Firebase recipes:', error);
+      }
+    };
+
+    fetchFirebaseRecipes();
+  }, []);
+
+  useEffect(() => {
+    let results = [...fakeRecipes, ...firebaseRecipes];
+
     if (query.trim()) {
       results = results.filter(recipe =>
         recipe.name.toLowerCase().includes(query.toLowerCase())
       );
     }
 
-    // Filter by category
     if (category !== 'Alla') {
       results = results.filter(recipe => recipe.category === category);
     }
 
-    // Filter by protein
     if (protein !== 'Alla') {
-      results = results.filter(recipe => recipe.protein.toLowerCase() === protein.toLowerCase());
-    }
-
-    // Filter by ingredient
-    if (ingredient.trim()) {
       results = results.filter(recipe =>
-        recipe.ingredients.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase()))
+        recipe.protein?.toLowerCase() === protein.toLowerCase()
       );
     }
 
-    // Sorting
-    results = [...results];
+    if (ingredient.trim()) {
+      results = results.filter(recipe =>
+        recipe.ingredients?.some(ing => ing.toLowerCase().includes(ingredient.toLowerCase()))
+      );
+    }
+
     switch (sortBy) {
       case 'calories':
         results.sort((a, b) =>
-          parseInt(a.nutrition.Calories) - parseInt(b.nutrition.Calories)
+          parseInt(a.nutrition?.Calories) - parseInt(b.nutrition?.Calories)
         );
         break;
       case 'time':
@@ -123,21 +151,16 @@ const RecipeSearch = () => {
     }
 
     setFilteredRecipes(results);
-  }, [query, category, protein, ingredient, sortBy]);
+  }, [query, category, protein, ingredient, sortBy, firebaseRecipes]);
 
-  //side panel code
+  const handleOpenPanel = (recipe) => {
+    setSelectedRecipe(recipe);
+    setIsPanelOpen(true);
+  };
 
-const [selectedRecipe, setSelectedRecipe] = useState(null);
-const [isPanelOpen, setIsPanelOpen] = useState(false);
-
-const handleOpenPanel = (recipe) => {
-  setSelectedRecipe(recipe);
-  setIsPanelOpen(true);
-};
-
-const handleClosePanel = () => {
-  setIsPanelOpen(false);
-};
+  const handleClosePanel = () => {
+    setIsPanelOpen(false);
+  };
 
 
 
@@ -219,18 +242,27 @@ const handleClosePanel = () => {
         </div>
       </div>
 
+      {/* Recipe Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredRecipes.map(recipe => (
-          <RecipeCard key={recipe.id} recipe={recipe}  onOpenPanel={handleOpenPanel}  />
+          <RecipeCard
+            key={recipe.id}
+            recipe={recipe}
+            onOpenPanel={handleOpenPanel}
+          />
         ))}
-
-        {selectedRecipe && (
-            <div className={`fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform transition-transform duration-300 z-50 ${isPanelOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-   <FullRecipe onClose={handleClosePanel}  recipe={selectedRecipe} /> 
- 
-  </div>
-        )}
       </div>
+
+      {/* Sliding Side Panel */}
+      {selectedRecipe && (
+        <div
+          className={`fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform transition-transform duration-300 z-50 ${
+            isPanelOpen ? 'translate-x-0' : 'translate-x-full'
+          }`}
+        >
+          <FullRecipe onClose={handleClosePanel} recipe={selectedRecipe} />
+        </div>
+      )}
     </div>
   );
 };
