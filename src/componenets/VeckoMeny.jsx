@@ -1,58 +1,12 @@
 import React, { useState, useEffect } from 'react';
 const VeckoMeny = () => {
 
-const fakeRecipes = [
-  {
-    id: '1',
-    name: 'Yogurt med bär',
-    image: '/frukost//ID-17.png',
-    ingredients: ['Yogurt', 'Granola', 'bär'],
-    instructions: ['Dela Banan', 'Blanda ihop'],
-    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
-    cookTime: '40min',
-    difficulty: 2,
-    category:"Frukost",
-    description: "Klassisk italiensk pasta med ägg, pancetta och parmesan.",
-    protein: "chicken",
-    rating: 5,
-  },
-  {
-    id: '2',
-    name: 'Knäckebröd',
-    image: '/frukost//ID-1.png',
-    ingredients: ['knäckebröd', 'Pålägg'],
-    instructions: ['Bre på smör', 'På med pålägg'],
-    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
-    cookTime: '10min',
-    difficulty: 3,
-    category:"Middag",
-    description: "Klassisk italiensk pasta med ägg, pancetta och parmesan.",
-    protein: "Vegeterian",
-    rating: 3
-  },
-  {
-    id: '3',
-    name: 'Yogurt med granola och banan',
-    image: '/frukost//ID-2.png',
-    ingredients: ['Yogurt', 'Granola', 'Banan'],
-    instructions: ['Dela Banan', 'Blanda ihop'],
-    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
-    cookTime: '20min',
-    difficulty: 3,
-    category:"Middag",
-    description: "Klassisk italiensk pasta med ägg, pancetta och parmesan.",
-    protein: "Beef",
-    rating: 4
-  },
-];
-
 const [menuRecipes, setMenuRecipes] = useState([]);
 
 //LocalStorage Code
   useEffect(() => {
     const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
-    const matchedRecipes = fakeRecipes.filter(recipe => storedMenu.includes(recipe.id));
-    setMenuRecipes(matchedRecipes);
+    setMenuRecipes(storedMenu);
   }, []);
 
 

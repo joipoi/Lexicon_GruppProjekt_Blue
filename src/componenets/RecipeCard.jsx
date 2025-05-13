@@ -1,13 +1,17 @@
 import React from 'react';
 
 const RecipeCard = ({ recipe, onOpenPanel  }) => {
-  const handleAddToMenu = () => {
-    const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
-    if (!storedMenu.includes(recipe.id)) {
-      const updatedMenu = [...storedMenu, recipe.id];
-      localStorage.setItem('veckoMeny', JSON.stringify(updatedMenu));
-    }
-  };
+const handleAddToMenu = () => {
+  const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
+
+  // Check if a recipe with the same id already exists
+  const alreadyExists = storedMenu.some(item => item.id === recipe.id);
+
+  if (!alreadyExists) {
+    const updatedMenu = [...storedMenu, recipe];
+    localStorage.setItem('veckoMeny', JSON.stringify(updatedMenu));
+  }
+};
 
   return (
     <div key={recipe.id} className="recipe-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow">
