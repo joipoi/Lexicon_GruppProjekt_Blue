@@ -14,9 +14,25 @@ const ShoppingList = ({ ingredients }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white rounded-lg shadow-md p-4">
-          <h3 className="font-semibold text-lg mb-3 pb-2 border-b border-[#F3E9DC]">Grönsaker</h3>
+          <h3 className="font-semibold text-lg mb-3 pb-2 border-b border-[#F3E9DC]">Varor</h3>
           <ul className="space-y-2">
             <li className="flex items-center">
+              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
+              <span>1 förp spaghetti</span>
+            </li>
+            <li className="flex items-center">
+              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
+              <span>1 burk soltorkade tomater</span>
+            </li>
+              <li className="flex items-center">
+              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
+              <span>500 g kycklingbröst</span>
+            </li>
+            <li className="flex items-center">
+              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
+              <span>200 g pancetta</span>
+            </li>
+                  <li className="flex items-center">
               <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]" />
               <span>2 st salladshuvuden</span>
             </li>
@@ -27,34 +43,6 @@ const ShoppingList = ({ ingredients }) => {
             <li className="flex items-center">
               <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
               <span>1 st gurka</span>
-            </li>
-          </ul>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-md p-4">
-          <h3 className="font-semibold text-lg mb-3 pb-2 border-b border-[#F3E9DC]">Kött & Fisk</h3>
-          <ul className="space-y-2">
-            <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>500 g kycklingbröst</span>
-            </li>
-            <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>200 g pancetta</span>
-            </li>
-          </ul>
-        </div>
-
-        <div className="bg-white rounded-lg shadow-md p-4">
-          <h3 className="font-semibold text-lg mb-3 pb-2 border-b border-[#F3E9DC]">Torrvaror</h3>
-          <ul className="space-y-2">
-            <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>1 förp spaghetti</span>
-            </li>
-            <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>1 burk soltorkade tomater</span>
             </li>
           </ul>
 

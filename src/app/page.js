@@ -17,7 +17,6 @@ export default function Home() {
       <Recipes />
       <Planning />
       <Contact />
-      <LoginForm />
       </>
     );
   }

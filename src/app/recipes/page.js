@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../../lib/firebase'; // Adjust the path if needed
-import RecipeSearch from '../../componenets/RecipeSearch';
+import FoodPlanner from '../../componenets/FoodPlanner';
 import UploadRecipe from '../../componenets/UploadRecipe';
 import { useRouter } from 'next/navigation';
 
@@ -83,7 +83,7 @@ const Recipes = () => {
       </div>
 
       {/* RecipeSearch Component */}
-      <RecipeSearch />
+      <FoodPlanner />
 
     </div>
   );

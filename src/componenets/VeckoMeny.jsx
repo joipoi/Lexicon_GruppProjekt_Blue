@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
-const VeckoMeny = ({ ingredients }) => {
+const VeckoMeny = () => {
 
 const fakeRecipes = [
   {
@@ -49,14 +48,16 @@ const fakeRecipes = [
 
 const [menuRecipes, setMenuRecipes] = useState([]);
 
+//LocalStorage Code
   useEffect(() => {
     const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
     const matchedRecipes = fakeRecipes.filter(recipe => storedMenu.includes(recipe.id));
     setMenuRecipes(matchedRecipes);
   }, []);
 
+
+  
   return (
-   
 <div id="meal-plan-tab" className="tab-content">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Veckomeny</h2>
@@ -72,8 +73,11 @@ const [menuRecipes, setMenuRecipes] = useState([]);
           <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Måndag</div>
           <div className="p-3 bg-white">
             <h3 className="font-medium mb-2">Frukost</h3>
-            <div className="drop-zone border-2 border-dashed border-[#F3E9DC] rounded p-2 mb-3" data-meal="breakfast" data-day="monday"></div>
-            
+            <div 
+            className="border-2 border-dashed border-[#F3E9DC] rounded p-2 mb-3" data-meal="breakfast" data-day="monday"
+
+            ></div>
+           
             <h3 className="font-medium mb-2">Lunch</h3>
             <div className="drop-zone border-2 border-dashed border-[#F3E9DC] rounded p-2 mb-3" data-meal="lunch" data-day="monday"></div>
             
@@ -101,11 +105,11 @@ const [menuRecipes, setMenuRecipes] = useState([]);
         <div className="bg-[#F3E9DC] p-6 rounded-lg">
       <h3 className="text-lg font-semibold mb-4">Dina valda recept</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {menuRecipes.map(recipe => (
-          <div
+      
+         {menuRecipes.map(recipe => (
+          <div  
             key={recipe.id}
             className="drag-item bg-white p-3 rounded-lg shadow-sm border border-[#8A9B7E]"
-            draggable="true"
           >
             <div className="flex justify-between">
               <h4 className="font-medium">{recipe.name}</h4>
@@ -123,13 +127,14 @@ const [menuRecipes, setMenuRecipes] = useState([]);
               {recipe.protein} • {recipe.cookTime}
             </p>
           </div>
-        ))}
+         
+        ))} 
+        
       </div>
+      
     </div>
      
     </div>
-
-         
   );
 };
 
