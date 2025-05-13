@@ -108,7 +108,7 @@ const RecipeSearch = () => {
   }, []);
 
   useEffect(() => {
-    let results = [...fakeRecipes, ...firebaseRecipes];
+    let results = [...firebaseRecipes];
 
     if (query.trim()) {
       results = results.filter(recipe =>
