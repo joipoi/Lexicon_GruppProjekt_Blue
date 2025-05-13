@@ -72,7 +72,7 @@ const Navbar = () => {
           {!user && (
                      
           <a href="#login" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border-3 border-terracotta text-umber rounded-lg ml-4 font-Lexend hover:bg-terracotta hover:text-parchment transition-colors">Logga In
-            <span className="material-symbols-outlined">north_east </span></a>
+            <span className="material-symbols-outlined">Login </span></a>
             )}
           {user && (
             <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#logout" onClick={(e) => { e.preventDefault(); handleLogout(router); }}>Logga Ut</a></li>          

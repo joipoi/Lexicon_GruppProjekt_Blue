@@ -3,7 +3,7 @@ import React from 'react'
 const Header = () => {
   return (
     <div className="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
-        <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 mt-60 font-Lexend text-umber">
+        <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 mt-20 font-Lexend text-umber">
             En bra måltidsplan är hälften av matglädjen!</h3>
             <p className="max-w-2xl mx-auto font-Lexend text-umber">
               Hungrig efter enklare vardagsmat? <br />
