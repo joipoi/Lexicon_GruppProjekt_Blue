@@ -146,7 +146,7 @@ const RecipePDF = ({ recipe }) => (
       <View style={styles.recipeHeader}>
         <Text style={styles.title}>{recipe.name}</Text>
         <View style={styles.metaInfo}>
-          <Text style={styles.metaItem}>Tillagningstid: {recipe.time} min</Text>
+          <Text style={styles.metaItem}>Tillagningstid: {recipe.cookTime} min</Text>
           <Text style={styles.metaItem}>Portioner: {recipe.servings || '4'}</Text>
           <Text style={styles.metaItem}>Kategori: {recipe.category || 'Middag'}</Text>
         </View>
@@ -192,15 +192,15 @@ const RecipePDF = ({ recipe }) => (
             <Text style={styles.nutritionLabel}>Kalorier</Text>
           </View>
           <View style={styles.nutritionItem}>
-            <Text style={styles.nutritionValue}>{recipe.nutrition.Protein}g</Text>
+            <Text style={styles.nutritionValue}>{recipe.nutrition.Protein}</Text>
             <Text style={styles.nutritionLabel}>Protein</Text>
           </View>
           <View style={styles.nutritionItem}>
-            <Text style={styles.nutritionValue}>{recipe.nutrition.Carbs}g</Text>
+            <Text style={styles.nutritionValue}>{recipe.nutrition.Carbs}</Text>
             <Text style={styles.nutritionLabel}>Kolhydrater</Text>
           </View>
           <View style={styles.nutritionItem}>
-            <Text style={styles.nutritionValue}>{recipe.nutrition.Fat}g</Text>
+            <Text style={styles.nutritionValue}>{recipe.nutrition.Fat}</Text>
             <Text style={styles.nutritionLabel}>Fett</Text>
           </View>
         </View>
