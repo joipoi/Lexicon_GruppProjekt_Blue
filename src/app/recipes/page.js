@@ -29,8 +29,8 @@ const Recipes = () => {
   }, []);
 
   return (
-    <div id="recipes" className="w-full px-[12%] py-10 scroll-mt-20">
-      <div className="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
+    <div id="planning" className="w-full px-[12%] py-10 scroll-mt-20">
+      {/* <div className="w-11/12 max-w-3xl text-center mx-auto h-screen flex flex-col items-center justify-center gap-4">
         <h3 className="flex items-end gap-2 text-xl md:text-2xl mb-3 font-Lexend">Recept</h3>
         <p className="max-w-2xl mx-auto font-Lexend">
           4.1 FRUKOST/MELLANMÅL Välkommen till vår frukostsida där du kan hitta inspirerande recept för en härlig start
@@ -47,9 +47,9 @@ const Recipes = () => {
           veckan. Njut av lunchen med våra noggrant utvalda recept!
         </p>
       </div>
-      <p className="text-center text-lg font-semibold mt-8">Förslag:</p>
+      <p className="text-center text-lg font-semibold mt-8">Förslag:</p> */}
 
-      {/* Render each recipe directly */}
+      {/* Render each recipe directly
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-10">
         {recipes.length > 0 ? (
           recipes.map((recipe) => (
@@ -80,7 +80,7 @@ const Recipes = () => {
       <div className="mt-20">
         <h2 className="text-center text-2xl font-bold mb-6">Lägg till nytt recept</h2>
         <UploadRecipe />
-      </div>
+      </div> */}
 
       {/* RecipeSearch Component */}
       <FoodPlanner />

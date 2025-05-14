@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const ShoppingList = ({ ingredients }) => {
+const ShoppingList = () => {
+  const [ingredients, setIngredients] = useState([]);
+
+  useEffect(() => {
+    // Load from veckoMeny and build the shopping list
+    const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
+
+    // Collect all ingredients (assuming ingredients is an array of strings)
+    const allIngredients = storedMenu.flatMap(recipe => recipe.ingredients || []);
+
+    // Remove duplicates
+    const uniqueIngredients = Array.from(new Set(allIngredients));
+
+    // Save to localStorage and state
+    localStorage.setItem('shoppingList', JSON.stringify(uniqueIngredients));
+    setIngredients(uniqueIngredients);
+  }, []);
+
+  const clearList = () => {
+    localStorage.setItem('shoppingList', JSON.stringify([]));
+    setIngredients([]);
+  };
+
   return (
-   
- <div id="shopping-list-tab" className="tab-content">
+    <div id="shopping-list-tab" className="tab-content">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Inköpslista</h2>
         <div className="flex space-x-2">
           <button className="px-4 py-2 rounded-lg border border-[#8A9B7E]">Skriv ut</button>
-          <button className="px-4 py-2 rounded-lg border border-[#8A9B7E]">Rensa allt</button>
+          <button onClick={clearList} className="px-4 py-2 rounded-lg border border-[#8A9B7E]">
+            Rensa allt
+          </button>
         </div>
       </div>
 
@@ -16,46 +39,31 @@ const ShoppingList = ({ ingredients }) => {
         <div className="bg-white rounded-lg shadow-md p-4">
           <h3 className="font-semibold text-lg mb-3 pb-2 border-b border-[#F3E9DC]">Varor</h3>
           <ul className="space-y-2">
-            <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>1 förp spaghetti</span>
-            </li>
-            <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>1 burk soltorkade tomater</span>
-            </li>
-              <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>500 g kycklingbröst</span>
-            </li>
-            <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>200 g pancetta</span>
-            </li>
-                  <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]" />
-              <span>2 st salladshuvuden</span>
-            </li>
-            <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>5 st tomater</span>
-            </li>
-            <li className="flex items-center">
-              <input type="checkbox" className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"/>
-              <span>1 st gurka</span>
-            </li>
+            {ingredients.map((item, index) => (
+              <li key={index} className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="mr-2 h-4 w-4 rounded border-[#8A9B7E] text-[#B5694D] focus:ring-[#D4A55E]"
+                />
+                <span>{item}</span>
+              </li>
+            ))}
           </ul>
 
-          <div className="mt-4">
+        {/*   <div className="mt-4">
             <div className="flex">
-              <input type="text" placeholder="Lägg till vara..." className="flex-grow p-2 border border-[#8A9B7E] rounded-l-lg focus:outline-none focus:ring-1 focus:ring-[#D4A55E]"/>
+              <input
+                type="text"
+                placeholder="Lägg till vara..."
+                className="flex-grow p-2 border border-[#8A9B7E] rounded-l-lg focus:outline-none focus:ring-1 focus:ring-[#D4A55E]"
+              />
               <button className="px-3 bg-[#8A9B7E] text-white rounded-r-lg">+</button>
             </div>
-      </div>
+          </div>
+          */}
+        </div> 
       </div>
     </div>
-  </div>
-         
   );
 };
 

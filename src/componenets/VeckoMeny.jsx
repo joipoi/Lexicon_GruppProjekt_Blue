@@ -1,63 +1,117 @@
 import React, { useState, useEffect } from 'react';
+import { DndContext, useDraggable, useDroppable } from '@dnd-kit/core';
 const VeckoMeny = () => {
-
-const fakeRecipes = [
-  {
-    id: '1',
-    name: 'Yogurt med bär',
-    image: '/frukost//ID-17.png',
-    ingredients: ['Yogurt', 'Granola', 'bär'],
-    instructions: ['Dela Banan', 'Blanda ihop'],
-    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
-    cookTime: '40min',
-    difficulty: 2,
-    category:"Frukost",
-    description: "Klassisk italiensk pasta med ägg, pancetta och parmesan.",
-    protein: "chicken",
-    rating: 5,
-  },
-  {
-    id: '2',
-    name: 'Knäckebröd',
-    image: '/frukost//ID-1.png',
-    ingredients: ['knäckebröd', 'Pålägg'],
-    instructions: ['Bre på smör', 'På med pålägg'],
-    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
-    cookTime: '10min',
-    difficulty: 3,
-    category:"Middag",
-    description: "Klassisk italiensk pasta med ägg, pancetta och parmesan.",
-    protein: "Vegeterian",
-    rating: 3
-  },
-  {
-    id: '3',
-    name: 'Yogurt med granola och banan',
-    image: '/frukost//ID-2.png',
-    ingredients: ['Yogurt', 'Granola', 'Banan'],
-    instructions: ['Dela Banan', 'Blanda ihop'],
-    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
-    cookTime: '20min',
-    difficulty: 3,
-    category:"Middag",
-    description: "Klassisk italiensk pasta med ägg, pancetta och parmesan.",
-    protein: "Beef",
-    rating: 4
-  },
-];
 
 const [menuRecipes, setMenuRecipes] = useState([]);
 
 //LocalStorage Code
   useEffect(() => {
     const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
-    const matchedRecipes = fakeRecipes.filter(recipe => storedMenu.includes(recipe.id));
-    setMenuRecipes(matchedRecipes);
+    setMenuRecipes(storedMenu);
   }, []);
 
 
+  //drag and drop code
+    const [dropped, setDropped] = useState(false);
+    const [assignedRecipes, setAssignedRecipes] = useState({});
+
+  const { attributes, listeners, setNodeRef: setDraggableRef, transform } = useDraggable({
+    id: 'draggable-1',
+  });
+
+  const { setNodeRef: setDroppableRef, isOver } = useDroppable({
+    id: 'droppable-1',
+  });
+
+  const style = {
+    transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : undefined,
+    cursor: 'grab',
+  };
+
+const handleDragEnd = (event) => {
+  const { active, over } = event;
+
+  if (over) {
+    const recipeId = active.id;
+    const dropZoneId = over.id;
+
+    const droppedRecipe = menuRecipes.find((r) => r.id === recipeId);
+    if (droppedRecipe) {
+      setAssignedRecipes((prev) => ({
+        ...prev,
+        [dropZoneId]: droppedRecipe,
+      }));
+    }
+  }
+};
+
+
   
+
+  //HELPER COMPONENET FOR DRAGGING
+const DraggableRecipe = ({ recipe }) => {
+  const { attributes, listeners, setNodeRef, transform } = useDraggable({
+    id: recipe.id,
+  });
+
+  const style = {
+    transform: transform ? `translate(${transform.x}px, ${transform.y}px)` : undefined,
+    cursor: 'grab',
+  };
+
   return (
+    <div
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      style={style}
+      className="drag-item bg-white p-3 rounded-lg shadow-sm border border-[#8A9B7E]"
+    >
+      <div className="flex justify-between">
+        <h4 className="font-medium">{recipe.name}</h4>
+        <span
+          className={`text-xs px-2 py-1 rounded-full ${
+            recipe.category === 'Lunch'
+              ? 'bg-[#8A9B7E] text-white'
+              : 'bg-[#D4A55E] text-[#3A3226]'
+          }`}
+        >
+          {recipe.category}
+        </span>
+      </div>
+      <p className="text-sm text-[#8C7B6B] mt-1">
+        {recipe.protein} • {recipe.cookTime}
+      </p>
+    </div>
+  );
+};
+
+//HELPER COMPONENET FOR DROPPING
+const DroppableZone = ({ id, children, assignedRecipe }) => {
+  const { setNodeRef, isOver } = useDroppable({ id });
+
+  const style = {
+    backgroundColor: isOver ? '#F3E9DC' : undefined,
+  };
+
+  return (
+    <div
+      ref={setNodeRef}
+      style={style}
+      className="border-2 border-dashed border-[#F3E9DC] rounded p-2 mb-3 min-h-[60px]"
+    >
+      {assignedRecipe ? (
+        <div className="text-sm text-[#3A3226]">
+          <strong>{assignedRecipe.name}</strong><br />
+        </div>
+      ) : children}
+    </div>
+  );
+};
+
+
+  return (
+        <DndContext onDragEnd={handleDragEnd}>
 <div id="meal-plan-tab" className="tab-content">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Veckomeny</h2>
@@ -72,17 +126,16 @@ const [menuRecipes, setMenuRecipes] = useState([]);
         <div className="day-column rounded-lg overflow-hidden shadow-md">
           <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Måndag</div>
           <div className="p-3 bg-white">
-            <h3 className="font-medium mb-2">Frukost</h3>
-            <div 
-            className="border-2 border-dashed border-[#F3E9DC] rounded p-2 mb-3" data-meal="breakfast" data-day="monday"
+       <h3 className="font-medium mb-2">Frukost</h3>
+<DroppableZone id="monday-breakfast" assignedRecipe={assignedRecipes["monday-breakfast"]} />
 
-            ></div>
-           
-            <h3 className="font-medium mb-2">Lunch</h3>
-            <div className="drop-zone border-2 border-dashed border-[#F3E9DC] rounded p-2 mb-3" data-meal="lunch" data-day="monday"></div>
-            
-            <h3 className="font-medium mb-2">Middag</h3>
-            <div className="drop-zone border-2 border-dashed border-[#F3E9DC] rounded p-2" data-meal="dinner" data-day="monday"></div>
+<h3 className="font-medium mb-2">Lunch</h3>
+<DroppableZone id="monday-lunch" assignedRecipe={assignedRecipes["monday-lunch"]} />
+
+<h3 className="font-medium mb-2">Middag</h3>
+<DroppableZone id="monday-dinner" assignedRecipe={assignedRecipes["monday-dinner"]} />
+
+
           </div>
         </div>
 
@@ -90,13 +143,61 @@ const [menuRecipes, setMenuRecipes] = useState([]);
           <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Tisdag</div>
           <div className="p-3 bg-white">
             <h3 className="font-medium mb-2">Frukost</h3>
-            <div className="drop-zone border-2 border-dashed border-[#F3E9DC] rounded p-2 mb-3" data-meal="breakfast" data-day="tuesday"></div>
-            
-            <h3 className="font-medium mb-2">Lunch</h3>
-            <div className="drop-zone border-2 border-dashed border-[#F3E9DC] rounded p-2 mb-3" data-meal="lunch" data-day="tuesday"></div>
-            
-            <h3 className="font-medium mb-2">Middag</h3>
-            <div className="drop-zone border-2 border-dashed border-[#F3E9DC] rounded p-2" data-meal="dinner" data-day="tuesday"></div>
+<DroppableZone id="tuesday-breakfast" assignedRecipe={assignedRecipes["tuesday-breakfast"]} />
+
+<h3 className="font-medium mb-2">Lunch</h3>
+<DroppableZone id="tuesday-lunch" assignedRecipe={assignedRecipes["tuesday-lunch"]} />
+
+<h3 className="font-medium mb-2">Middag</h3>
+<DroppableZone id="tuesday-dinner" assignedRecipe={assignedRecipes["tuesday-dinner"]} />
+          </div>
+        </div>
+
+        <div className="day-column rounded-lg overflow-hidden shadow-md">
+          <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Onsdag</div>
+          <div className="p-3 bg-white">
+       <h3 className="font-medium mb-2">Frukost</h3>
+<DroppableZone id="Wednesday-breakfast" assignedRecipe={assignedRecipes["Wednesday-breakfast"]} />
+
+<h3 className="font-medium mb-2">Lunch</h3>
+<DroppableZone id="Wednesday-lunch" assignedRecipe={assignedRecipes["Wednesday-lunch"]} />
+
+<h3 className="font-medium mb-2">Middag</h3>
+<DroppableZone id="Wednesday-dinner" assignedRecipe={assignedRecipes["Wednesday-dinner"]} />
+
+
+          </div>
+        </div>
+
+        <div className="day-column rounded-lg overflow-hidden shadow-md">
+          <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Torsdag</div>
+          <div className="p-3 bg-white">
+       <h3 className="font-medium mb-2">Frukost</h3>
+<DroppableZone id="Thursday-breakfast" assignedRecipe={assignedRecipes["Thursday-breakfast"]} />
+
+<h3 className="font-medium mb-2">Lunch</h3>
+<DroppableZone id="Thursday-lunch" assignedRecipe={assignedRecipes["Thursday-lunch"]} />
+
+<h3 className="font-medium mb-2">Middag</h3>
+<DroppableZone id="Thursday-dinner" assignedRecipe={assignedRecipes["Thursday-dinner"]} />
+
+
+          </div>
+        </div>
+
+        <div className="day-column rounded-lg overflow-hidden shadow-md">
+          <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Fredag</div>
+          <div className="p-3 bg-white">
+       <h3 className="font-medium mb-2">Frukost</h3>
+<DroppableZone id="Friday-breakfast" assignedRecipe={assignedRecipes["Friday-breakfast"]} />
+
+<h3 className="font-medium mb-2">Lunch</h3>
+<DroppableZone id="Friday-lunch" assignedRecipe={assignedRecipes["Friday-lunch"]} />
+
+<h3 className="font-medium mb-2">Middag</h3>
+<DroppableZone id="Friday-dinner" assignedRecipe={assignedRecipes["Friday-dinner"]} />
+
+
           </div>
         </div>
 
@@ -106,35 +207,16 @@ const [menuRecipes, setMenuRecipes] = useState([]);
       <h3 className="text-lg font-semibold mb-4">Dina valda recept</h3>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       
-         {menuRecipes.map(recipe => (
-          <div  
-            key={recipe.id}
-            className="drag-item bg-white p-3 rounded-lg shadow-sm border border-[#8A9B7E]"
-          >
-            <div className="flex justify-between">
-              <h4 className="font-medium">{recipe.name}</h4>
-              <span
-                className={`text-xs px-2 py-1 rounded-full ${
-                  recipe.category === 'Lunch'
-                    ? 'bg-[#8A9B7E] text-white'
-                    : 'bg-[#D4A55E] text-[#3A3226]'
-                }`}
-              >
-                {recipe.category}
-              </span>
-            </div>
-            <p className="text-sm text-[#8C7B6B] mt-1">
-              {recipe.protein} • {recipe.cookTime}
-            </p>
-          </div>
-         
-        ))} 
+        {menuRecipes.map((recipe) => (
+  <DraggableRecipe key={recipe.id} recipe={recipe} />
+))}
         
       </div>
       
     </div>
      
     </div>
+    </DndContext>
   );
 };
 

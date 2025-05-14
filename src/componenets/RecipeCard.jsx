@@ -5,37 +5,13 @@ import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../lib/firebase'; 
 import { useRouter } from 'next/navigation';
 
-const RecipeCard = ({ recipe, onOpenPanel }) => {
-  const router = useRouter();
-  
-  const isFirebaseRecipe = !!recipe?.id;
-
+const RecipeCard = ({ recipe, onOpenPanel  }) => {
   const handleAddToMenu = () => {
     const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
     if (!storedMenu.includes(recipe.id)) {
       const updatedMenu = [...storedMenu, recipe.id];
       localStorage.setItem('veckoMeny', JSON.stringify(updatedMenu));
     }
-  };
-
-  const handleDelete = async () => {
-    if (!recipe?.id) return;
-
-    const confirmDelete = window.confirm('Är du säker på att du vill ta bort detta recept?');
-    if (!confirmDelete) return;
-
-    try {
-      await deleteDoc(doc(db, 'recipes', recipe.id));
-      alert('Receptet har tagits bort.');
-      router.push('/'); 
-    } catch (err) {
-      console.error('Error deleting recipe:', err);
-      alert('Fel vid borttagning av recept.');
-    }
-  };
-
-  const handleEdit = () => {
-    router.push(`/edit-recipe/${recipe.id}`);
   };
 
   return (

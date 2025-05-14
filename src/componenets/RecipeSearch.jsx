@@ -108,7 +108,7 @@ const RecipeSearch = () => {
   }, []);
 
   useEffect(() => {
-    let results = [...fakeRecipes, ...firebaseRecipes];
+    let results = [...firebaseRecipes];
 
     if (query.trim()) {
       results = results.filter(recipe =>
@@ -192,10 +192,10 @@ const RecipeSearch = () => {
               className="w-full p-2 rounded-lg border border-[#8A9B7E]"
             >
               <option>Alla</option>
-              <option>Chicken</option>
-              <option>Beef</option>
-              <option>Fish</option>
-              <option>Vegetarian</option>
+              <option value="Kyckling">Chicken</option>
+              <option value="Nöt">Beef</option>
+              <option value="Fisk">Fish</option>
+              <option value="Vegetarisk">Vegetarian</option>
               <option>Vegan</option>
             </select>
           </div>

@@ -7,8 +7,8 @@ const About = () => {
   return (
     <>
       <Navbar />
-      <div id="about" className="w-full px-[12%] pt-32 pb-10 scroll-mt-20 bg-white min-h-screen">
-      <div className="w-11/12 max-w-4xl mx-auto flex flex-col items-start justify-center gap-6 text-umber font-Lexend">
+      <div id="about" className="w-full px-[12%] pt-10 pb-10 scroll-mt-20 bg-white min-h-screen flex items-center justify-center">
+        <div className="w-11/12 max-w-4xl mx-auto flex flex-col items-center justify-center gap-6 text-umber font-Lexend text-center">
           <h3 className="text-2xl md:text-3xl font-semibold text-terracotta">Om Oss</h3>
 
           <p>
@@ -55,11 +55,6 @@ const About = () => {
             <li>🌱 Hållbarhet – Mindre svinn, bättre planering</li>
             <li>🔍 Transparens – Du vet exakt vad du äter</li>
           </ul>
-
-          <p className="mt-4">
-            <strong>📩 Hjälp Oss Växa:</strong> Har du förslag eller ett recept att dela med oss? Kontakta oss på{' '}
-            <a href="mailto:hello@fijoka.se" className="text-terracotta underline">hello@fijoka.se</a>
-          </p>
         </div>
       </div>
     </>
