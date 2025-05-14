@@ -191,7 +191,7 @@ const RecipeSearch = () => {
       {/* Sliding Side Panel */}
       {selectedRecipe && (
         <div
-          className={`fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform transition-transform duration-300 z-50 ${
+          className={`fixed top-0 right-0 w-100 h-full bg-white shadow-lg transform transition-transform duration-300 z-50 ${
             isPanelOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
