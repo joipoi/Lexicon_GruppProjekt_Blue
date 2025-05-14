@@ -2,14 +2,14 @@ import React from 'react';
 
 const RecipeCard = ({ recipe, onOpenPanel  }) => {
 const handleAddToMenu = () => {
-  const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
+  const storedMenu = JSON.parse(localStorage.getItem('valdaRecept')) || [];
 
   // Check if a recipe with the same id already exists
   const alreadyExists = storedMenu.some(item => item.id === recipe.id);
 
   if (!alreadyExists) {
     const updatedMenu = [...storedMenu, recipe];
-    localStorage.setItem('veckoMeny', JSON.stringify(updatedMenu));
+    localStorage.setItem('valdaRecept', JSON.stringify(updatedMenu));
   }
 };
 
@@ -27,12 +27,12 @@ const handleAddToMenu = () => {
         </div>
         <p className="text-sm mb-4">{recipe.description}</p>
         <div className="flex justify-between items-center">
-          <button className="text-sm font-medium" onClick={() => onOpenPanel(recipe)}>
+          <button className="cursor-pointer text-sm font-medium" onClick={() => onOpenPanel(recipe)}>
            Se recept
           </button>
           <button
             onClick={handleAddToMenu}
-            className="add-to-plan text-sm px-3 py-1 rounded-lg border border-[#8A9B7E] hover:bg-[#8A9B7E] hover:text-white transition-colors"
+            className="add-to-plan text-sm px-3 py-1 rounded-lg border border-[#8A9B7E] hover:bg-[#8A9B7E] hover:text-white transition-colors cursor-pointer"
           >
             Lägg till i meny
           </button>

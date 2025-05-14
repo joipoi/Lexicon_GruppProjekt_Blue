@@ -1,3 +1,6 @@
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import RecipePDF from './RecipePDF';
+
 const FullRecipe = ({ recipe, onClose }) => {
 return (
   <div className="recipe-detail fixed h-full bg-white z-20 overflow-y-auto" data-recipe-id="1">
@@ -71,9 +74,14 @@ return (
             ))}
       </ol>
       
-      <button className="w-full py-3 px-6 rounded-lg font-medium text-white mb-4 transition-colors">
-        Lägg till i veckomeny
+      
+         <div className="mt-8">
+        <PDFDownloadLink document={<RecipePDF recipe={recipe} />} fileName={`${recipe.name}.pdf`}>
+          <button className="w-full py-3 px-6 rounded-lg font-medium te mb-4 cursor-pointer ">
+        Ladda ner som PDF
       </button>
+        </PDFDownloadLink>
+      </div>
     </div>
   </div>
 

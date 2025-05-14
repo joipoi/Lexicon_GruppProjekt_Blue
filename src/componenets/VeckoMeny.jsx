@@ -6,10 +6,14 @@ const [menuRecipes, setMenuRecipes] = useState([]);
 
 //LocalStorage Code
   useEffect(() => {
-    const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
+    const storedMenu = JSON.parse(localStorage.getItem('valdaRecept')) || [];
     setMenuRecipes(storedMenu);
   }, []);
 
+  useEffect(() => {
+  const savedMenu = JSON.parse(localStorage.getItem("VeckoMeny")) || {};
+  setAssignedRecipes(savedMenu);
+}, []);
 
   //drag and drop code
     const [dropped, setDropped] = useState(false);
@@ -36,14 +40,30 @@ const handleDragEnd = (event) => {
     const dropZoneId = over.id;
 
     const droppedRecipe = menuRecipes.find((r) => r.id === recipeId);
+
     if (droppedRecipe) {
+      // Update the UI state
       setAssignedRecipes((prev) => ({
         ...prev,
         [dropZoneId]: droppedRecipe,
       }));
+
+      // Get existing menu from localStorage
+      const storedMenu = JSON.parse(localStorage.getItem("VeckoMeny")) || {};
+
+      // Update the slot with the new recipe
+      const updatedMenu = {
+        ...storedMenu,
+        [dropZoneId]: droppedRecipe,
+      };
+
+      // Save it back
+      localStorage.setItem("VeckoMeny", JSON.stringify(updatedMenu));
     }
   }
 };
+
+
 
 
   
@@ -115,10 +135,21 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
 <div id="meal-plan-tab" className="tab-content">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Veckomeny</h2>
+        {
         <div className="flex space-x-2">
-          <button className="px-4 py-2 rounded-lg border border-[#8A9B7E]">Spara meny</button>
-          <button className="px-4 py-2 rounded-lg text-white">Ny veckomeny</button>
+          {/* <button className="px-4 py-2 rounded-lg border border-[#8A9B7E]">Spara meny</button> */} 
+          <button
+  className="px-4 py-2 rounded-lg cursor-pointer"
+  onClick={() => {
+    localStorage.removeItem('VeckoMeny'); // Clear from localStorage
+    setAssignedRecipes({}); // Clear the displayed state
+  }}
+>
+  Rensa VeckoMeny
+</button>
+
         </div>
+        }
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-8">
@@ -196,6 +227,39 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
 
 <h3 className="font-medium mb-2">Middag</h3>
 <DroppableZone id="Friday-dinner" assignedRecipe={assignedRecipes["Friday-dinner"]} />
+
+
+          </div>
+        </div>
+
+        
+           <div className="day-column rounded-lg overflow-hidden shadow-md">
+          <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Lördag</div>
+          <div className="p-3 bg-white">
+       <h3 className="font-medium mb-2">Frukost</h3>
+<DroppableZone id="Saturday-breakfast" assignedRecipe={assignedRecipes["Saturday-breakfast"]} />
+
+<h3 className="font-medium mb-2">Lunch</h3>
+<DroppableZone id="Saturday-lunch" assignedRecipe={assignedRecipes["Saturday-lunch"]} />
+
+<h3 className="font-medium mb-2">Middag</h3>
+<DroppableZone id="Saturday-dinner" assignedRecipe={assignedRecipes["Saturday-dinner"]} />
+
+
+          </div>
+        </div>
+
+           <div className="day-column rounded-lg overflow-hidden shadow-md">
+          <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Söndag</div>
+          <div className="p-3 bg-white">
+       <h3 className="font-medium mb-2">Frukost</h3>
+<DroppableZone id="Sunday-breakfast" assignedRecipe={assignedRecipes["Sunday-breakfast"]} />
+
+<h3 className="font-medium mb-2">Lunch</h3>
+<DroppableZone id="Sunday-lunch" assignedRecipe={assignedRecipes["Sunday-lunch"]} />
+
+<h3 className="font-medium mb-2">Middag</h3>
+<DroppableZone id="Sunday-dinner" assignedRecipe={assignedRecipes["Sunday-dinner"]} />
 
 
           </div>

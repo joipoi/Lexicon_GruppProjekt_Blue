@@ -4,19 +4,23 @@ const ShoppingList = () => {
   const [ingredients, setIngredients] = useState([]);
 
   useEffect(() => {
-    // Load from veckoMeny and build the shopping list
-    const storedMenu = JSON.parse(localStorage.getItem('veckoMeny')) || [];
+  // Load from VeckoMeny (now an object like { "monday-breakfast": recipe, ... })
+  const storedMenu = JSON.parse(localStorage.getItem('VeckoMeny')) || {};
 
-    // Collect all ingredients (assuming ingredients is an array of strings)
-    const allIngredients = storedMenu.flatMap(recipe => recipe.ingredients || []);
+  // Get all recipe objects (values of the storedMenu object)
+  const recipes = Object.values(storedMenu);
 
-    // Remove duplicates
-    const uniqueIngredients = Array.from(new Set(allIngredients));
+  // Collect all ingredients from all recipes
+  const allIngredients = recipes.flatMap(recipe => recipe.ingredients || []);
 
-    // Save to localStorage and state
-    localStorage.setItem('shoppingList', JSON.stringify(uniqueIngredients));
-    setIngredients(uniqueIngredients);
-  }, []);
+  // Remove duplicates
+  const uniqueIngredients = Array.from(new Set(allIngredients));
+
+  // Save to localStorage and state
+  localStorage.setItem('shoppingList', JSON.stringify(uniqueIngredients));
+  setIngredients(uniqueIngredients);
+}, []);
+
 
   const clearList = () => {
     localStorage.setItem('shoppingList', JSON.stringify([]));
@@ -28,8 +32,8 @@ const ShoppingList = () => {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Inköpslista</h2>
         <div className="flex space-x-2">
-          <button className="px-4 py-2 rounded-lg border border-[#8A9B7E]">Skriv ut</button>
-          <button onClick={clearList} className="px-4 py-2 rounded-lg border border-[#8A9B7E]">
+          <button className="cursor-pointer px-4 py-2 rounded-lg border border-[#8A9B7E]">Skriv ut</button>
+          <button onClick={clearList} className="cursor-pointer px-4 py-2 rounded-lg border border-[#8A9B7E]">
             Rensa allt
           </button>
         </div>
