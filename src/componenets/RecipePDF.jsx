@@ -18,10 +18,10 @@ const styles = StyleSheet.create({
     borderBottomColor: '#D4A55E', // Light brown accent
   },
   logoContainer: {
-    width: 120,
+    width: 60,
   },
   logo: {
-    width: 100,
+    width: 50,
     height: 40,
   },
   tagline: {
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     color: '#3A3226', // Dark brown
   },
   image: {
-    width: '100%',
+    width: '50%',
     maxHeight: 200,
     marginBottom: 20,
     borderRadius: 4,
@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
   },
   ingredientsList: {
     marginLeft: 10,
+    fontSize:11
   },
   ingredientItem: {
     flexDirection: 'row',
@@ -83,6 +84,7 @@ const styles = StyleSheet.create({
   },
   instructionsList: {
     marginLeft: 10,
+     fontSize:11
   },
   instructionItem: {
     flexDirection: 'row',
@@ -130,7 +132,7 @@ const RecipePDF = ({ recipe }) => (
         <View style={styles.logoContainer}>
           <Image 
             style={styles.logo} 
-            src="/assets/fijoka_logo_terracota.npg"
+           src={'Icon/logo_icon_sage.png'}
             alt="Fijoka Logo"
           />
           <Text style={styles.tagline}>En bra måltidsplan är hälften av matglädjen!</Text>
