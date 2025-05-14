@@ -63,16 +63,17 @@ return (
         </div>
       </div>
       
-      <h3 className="font-bold mb-3">Tillagning</h3>
-      <ol className="space-y-4 mb-8">
-        {recipe.instructions.map((item, index) => (
- <li key={index} className="flex">
-    
-          <span className="inline-block w-6 h-6 bg-[#8A9B7E] text-white rounded-full text-center mr-3 flex-shrink-0">{index+1}</span>
-          <span>{item}</span>
-        </li>
-            ))}
-      </ol>
+  <h3 className="font-bold mb-3">Tillagning</h3>
+<ol className="space-y-4 mb-8">
+  {recipe.instructions.map((item, index) => (
+    <li key={index} className="flex">
+      <span className="inline-flex w-6 h-6 bg-[#8A9B7E] text-white rounded-full items-center justify-center mr-3 flex-shrink-0">
+        {index + 1}
+      </span>
+      <span>{item}</span>
+    </li>
+  ))}
+</ol>
       
       
          <div className="mt-8">

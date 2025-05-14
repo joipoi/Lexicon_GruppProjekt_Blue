@@ -135,7 +135,7 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
 <div id="meal-plan-tab" className="tab-content">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Veckomeny</h2>
-        {
+       
         <div className="flex space-x-2">
           {/* <button className="px-4 py-2 rounded-lg border border-[#8A9B7E]">Spara meny</button> */} 
           <button
@@ -149,7 +149,7 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
 </button>
 
         </div>
-        }
+        
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-7 gap-4 mb-8">
@@ -268,7 +268,21 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
       </div>
 
         <div className="bg-[#F3E9DC] p-6 rounded-lg">
+          <div className="flex justify-between items-center mb-6">
       <h3 className="text-lg font-semibold mb-4">Dina valda recept</h3>
+          <div className="flex space-x-2">
+          <button
+  className="px-4 py-2 rounded-lg cursor-pointer"
+  onClick={() => {
+    localStorage.removeItem('valdaRecept'); // Clear from localStorage
+    setMenuRecipes([]); // Clear the displayed state
+  }}
+>
+  Rensa VeckoMeny
+</button>
+
+        </div>
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       
         {menuRecipes.map((recipe) => (
@@ -276,6 +290,7 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
 ))}
         
       </div>
+      
       
     </div>
      
