@@ -1,6 +1,6 @@
 'use client';
 
-import { auth } from '../lib/firebase'; // Make sure this exports getAuth(app)
+import { auth } from '../lib/firebase'; 
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
