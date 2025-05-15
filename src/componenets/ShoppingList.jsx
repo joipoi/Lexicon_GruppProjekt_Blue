@@ -20,7 +20,7 @@ const ShoppingList = () => {
 };
 
 for (const key in storedMenu) {
-  const [day, meal] = key.split('-');
+  const [day] = key.split('-');
   if (weekRecipes[day]) {
     weekRecipes[day].push(storedMenu[key]);
   }

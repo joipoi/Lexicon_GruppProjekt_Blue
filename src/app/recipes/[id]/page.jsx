@@ -1,6 +1,5 @@
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../lib/firebase'; 
-import Image from 'next/image';
 
 export async function generateStaticParams() {
   return [];

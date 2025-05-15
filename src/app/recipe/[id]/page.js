@@ -4,9 +4,6 @@ import { useParams } from 'next/navigation';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../../../lib/firebase';
-
-import RecipeCard from '../../../componenets/RecipeCard';
-import ShoppingList from '../../../componenets/ShoppingList';
 import RecipePDF from '../../../componenets/RecipePDF';
 import FullRecipe from '../../../componenets/FullRecipe';
 

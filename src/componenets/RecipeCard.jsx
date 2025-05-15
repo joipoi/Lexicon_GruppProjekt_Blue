@@ -108,15 +108,15 @@ const RecipeCard = ({ recipe, onOpenPanel }) => {
           <div className="flex justify-between gap-2 mt-2">
             <button
               onClick={handleEdit}
-              className="bg-[#8A9B7E] text-white px-4 py-2 rounded cursor-pointer"
+              className="cursor-pointer add-to-plan text-sm px-3 py-1 rounded-lg border border-[#8A9B7E] hover:bg-[#8A9B7E] hover:text-white transition-colors"
             >
-              ✏️ Redigera
+              Redigera
             </button>
             <button
               onClick={handleDelete}
-              className="bg-[#8A9B7E] text-white px-4 py-2 rounded cursor-pointer"
+              className="cursor-pointer add-to-plan text-sm px-3 py-1 rounded-lg border border-[#8A9B7E] hover:bg-[#8A9B7E] hover:text-white transition-colors"
             >
-              🗑️ Ta bort
+              Ta bort
             </button>
           </div>
         )}
