@@ -178,7 +178,7 @@ const RecipeSearch = () => {
       </div>
 
       {/* Recipe Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-h-[1200px] overflow-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredRecipes.map(recipe => (
           <RecipeCard
             key={recipe.id}
