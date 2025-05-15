@@ -127,11 +127,14 @@ const RecipeSearch = () => {
               className="w-full p-2 rounded-lg border border-[#8A9B7E]"
             >
               <option>Alla</option>
-              <option value="Kyckling">Chicken</option>
-              <option value="Nöt">Beef</option>
-              <option value="Fisk">Fish</option>
-              <option value="Vegetarisk">Vegetarian</option>
-              <option>Vegan</option>
+              <option value="Kyckling">Kyckling</option>
+              <option value="Nöt">Nöt</option>
+              <option value="Fisk">Fisk</option>
+              <option value="Vegetarisk">Vegetarisk</option>
+              <option value="Lamm">Lamm</option>
+              <option value="Ägg">Ägg</option>
+              <option value="Bacon">Bacon</option>
+              <option value="Fläsk">Fläsk</option>
             </select>
           </div>
 
@@ -178,7 +181,7 @@ const RecipeSearch = () => {
       </div>
 
       {/* Recipe Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-h-[1200px] overflow-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredRecipes.map(recipe => (
           <RecipeCard
             key={recipe.id}
