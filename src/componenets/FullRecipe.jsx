@@ -1,3 +1,6 @@
+import { PDFDownloadLink } from '@react-pdf/renderer';
+import RecipePDF from './RecipePDF';
+
 const FullRecipe = ({ recipe, onClose }) => {
 return (
   <div className="recipe-detail fixed h-full bg-white z-20 overflow-y-auto" data-recipe-id="1">
@@ -60,20 +63,26 @@ return (
         </div>
       </div>
       
-      <h3 className="font-bold mb-3">Tillagning</h3>
-      <ol className="space-y-4 mb-8">
-        {recipe.instructions.map((item, index) => (
- <li key={index} className="flex">
-    
-          <span className="inline-block w-6 h-6 bg-[#8A9B7E] text-white rounded-full text-center mr-3 flex-shrink-0">{index+1}</span>
-          <span>{item}</span>
-        </li>
-            ))}
-      </ol>
+  <h3 className="font-bold mb-3">Tillagning</h3>
+<ol className="space-y-4 mb-8">
+  {recipe.instructions.map((item, index) => (
+    <li key={index} className="flex">
+      <span className="inline-flex w-6 h-6 bg-[#8A9B7E] text-white rounded-full items-center justify-center mr-3 flex-shrink-0">
+        {index + 1}
+      </span>
+      <span>{item}</span>
+    </li>
+  ))}
+</ol>
       
-      <button className="w-full py-3 px-6 rounded-lg font-medium text-white mb-4 transition-colors">
-        Lägg till i veckomeny
+      
+         <div className="mt-8">
+        <PDFDownloadLink document={<RecipePDF recipe={recipe} />} fileName={`${recipe.name}.pdf`}>
+          <button className="w-full py-3 px-6 rounded-lg font-medium te mb-4 cursor-pointer ">
+        Ladda ner som PDF
       </button>
+        </PDFDownloadLink>
+      </div>
     </div>
   </div>
 

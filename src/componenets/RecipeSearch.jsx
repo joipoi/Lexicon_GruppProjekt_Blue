@@ -6,71 +6,6 @@ import FullRecipe from './FullRecipe';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../lib/firebase'; 
 
-const fakeRecipes = [
-  {
-    id: '1',
-    name: 'Yogurt med bär',
-    image: '/frukost//ID-17.png',
-    ingredients: ['Yogurt', 'Granola', 'bär'],
-    instructions: ['Dela Banan', 'Blanda ihop'],
-    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
-    cookTime: '40min',
-    difficulty: 2,
-    category:"Frukost",
-    description: "Klassisk italiensk pasta med ägg, pancetta och parmesan.",
-    protein: "chicken",
-    rating: 5,
-  },
-  {
-    id: '2',
-    name: 'Knäckebröd',
-    image: '/frukost//ID-1.png',
-    ingredients: ['knäckebröd', 'Pålägg'],
-    instructions: ['Bre på smör', 'På med pålägg'],
-    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
-    cookTime: '10min',
-    difficulty: 3,
-    category:"Middag",
-    description: "Klassisk italiensk pasta med ägg, pancetta och parmesan.",
-    protein: "Vegeterian",
-    rating: 3
-  },
-  {
-    id: '3',
-    name: 'Yogurt med granola och banan',
-    image: '/frukost//ID-2.png',
-    ingredients: ['Yogurt', 'Granola', 'Banan'],
-    instructions: ['Dela Banan', 'Blanda ihop'],
-    nutrition: { Calories: '500 kcal', Protein: '30g', Carbs: '40g', Fat: '25g' },
-    cookTime: '20min',
-    difficulty: 3,
-    category:"Middag",
-    description: "Klassisk italiensk pasta med ägg, pancetta och parmesan.",
-    protein: "Beef",
-    rating: 4
-  },
-  {
-    id: '4',
-    name: 'Pasta Carbonara',
-    image: '/lunch/ID-112.png',
-    ingredients: ['400 g spaghetti', '200 g pancetta', '3 äggulor', '50 g parmesan', 'Svartpeppar'],
-    instructions: [
-      'Koka pastan enligt anvisning på förpackningen.',
-      'Stek pancettan knaprig i en torr stekpanna.',
-      'Vispa ihop äggulor och riven parmesan i en skål.',
-      'Häll av pastan och blanda snabbt med äggblandningen och pancettan.',
-      'Krydda med svartpeppar och servera omedelbart.'
-    ],
-    nutrition: { Calories: '650 kcal', Protein: '25 g', Carbs: '75 g', Fat: '25 g' },
-    cookTime: '30 min',
-    difficulty: 3,
-    category:"Middag",
-    description: "En äkta italiensk klassiker som är både enkel och otroligt god. Perfekt för en snabb vardagsmiddag.",
-    protein: "Kyckling",
-    rating: 4
-  },
-];
-
 const RecipeSearch = () => {
   const [query, setQuery] = useState('');
   const [category, setCategory] = useState('Alla');
@@ -192,11 +127,14 @@ const RecipeSearch = () => {
               className="w-full p-2 rounded-lg border border-[#8A9B7E]"
             >
               <option>Alla</option>
-              <option value="Kyckling">Chicken</option>
-              <option value="Nöt">Beef</option>
-              <option value="Fisk">Fish</option>
-              <option value="Vegetarisk">Vegetarian</option>
-              <option>Vegan</option>
+              <option value="Kyckling">Kyckling</option>
+              <option value="Nöt">Nöt</option>
+              <option value="Fisk">Fisk</option>
+              <option value="Vegetarisk">Vegetarisk</option>
+              <option value="Lamm">Lamm</option>
+              <option value="Ägg">Ägg</option>
+              <option value="Bacon">Bacon</option>
+              <option value="Fläsk">Fläsk</option>
             </select>
           </div>
 
@@ -243,7 +181,7 @@ const RecipeSearch = () => {
       </div>
 
       {/* Recipe Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-h-[1200px] overflow-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredRecipes.map(recipe => (
           <RecipeCard
             key={recipe.id}
@@ -256,7 +194,7 @@ const RecipeSearch = () => {
       {/* Sliding Side Panel */}
       {selectedRecipe && (
         <div
-          className={`fixed top-0 right-0 w-80 h-full bg-white shadow-lg transform transition-transform duration-300 z-50 ${
+          className={`fixed top-0 right-0 w-100 h-full bg-white shadow-lg transform transition-transform duration-300 z-50 ${
             isPanelOpen ? 'translate-x-0' : 'translate-x-full'
           }`}
         >
