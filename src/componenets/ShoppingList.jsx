@@ -4,10 +4,30 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 
 const ShoppingList = () => {
   const [ingredients, setIngredients] = useState([]);
-
+  const [ingredientsSorted, setIngredientsSorted] = useState([]);
   useEffect(() => {
   // Load from VeckoMeny (now an object like { "monday-breakfast": recipe, ... })
   const storedMenu = JSON.parse(localStorage.getItem('VeckoMeny')) || {};
+
+  const weekRecipes = {
+  monday: [],
+  tuesday: [],
+  wednesday: [],
+  thursday: [],
+  friday: [],
+  saturday: [],
+  sunday: [],
+};
+
+for (const key in storedMenu) {
+  const [day, meal] = key.split('-');
+  if (weekRecipes[day]) {
+    weekRecipes[day].push(storedMenu[key]);
+  }
+}
+
+setIngredientsSorted(weekRecipes)
+  console.log(weekRecipes);
 
   // Get all recipe objects (values of the storedMenu object)
   const recipes = Object.values(storedMenu);
@@ -31,10 +51,16 @@ const ShoppingList = () => {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Inköpslista</h2>
         <div className="flex space-x-2">
-     <PDFDownloadLink document={<ShoppingListPDF ingredients={ingredients} />} fileName={`ShoppingList.pdf`}>
-         <button className="cursor-pointer px-4 py-2 rounded-lg border border-[#8A9B7E]">Skriv ut</button> 
-        </PDFDownloadLink>
-         
+{ingredientsSorted && Object.keys(ingredientsSorted).length > 0 && (
+  <PDFDownloadLink
+    document={<ShoppingListPDF mealPlan={ingredientsSorted} />}
+    fileName="ShoppingList.pdf"
+  >
+    <button className="cursor-pointer px-4 py-2 rounded-lg border border-[#8A9B7E]">
+      Skriv ut
+    </button>
+  </PDFDownloadLink>
+)}
 
           <button onClick={clearList} className="cursor-pointer px-4 py-2 rounded-lg border border-[#8A9B7E]">
             Rensa allt
