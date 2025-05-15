@@ -57,7 +57,7 @@ const Navbar = () => {
         {/* -- -------- Desktop Menu -------- -- */}
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-lg px-12 py-3 ${isScroll ? "" : "bg-parchment shadow-sm bg-opacity-30 "} `}>
           <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/">Hem</TransitionLink>
-          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/recipes">Plannering</TransitionLink> 
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/recipes">Planering</TransitionLink> 
           <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/about">Om Oss</TransitionLink>
           <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/contact">Kontakt</TransitionLink>
           
@@ -93,7 +93,7 @@ const Navbar = () => {
 
           <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/top">Hem</TransitionLink>
                     
-          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/planning">Plannering</TransitionLink>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/planning">Planering</TransitionLink>
           <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/about">Om</TransitionLink>
           <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/contact">Kontakt</TransitionLink>
           <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/login">Logga In</TransitionLink>
