@@ -1,5 +1,7 @@
 'use client';
 
+import { auth } from '../lib/firebase'; // Make sure this exports getAuth(app)
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import {
@@ -21,6 +23,7 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export default function CreateAccountForm() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -40,12 +43,22 @@ export default function CreateAccountForm() {
     return Object.values(tempErrors).every((x) => x === '');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    // Placeholder for Firebase integration
-    console.log('Creating account with:', { email, password });
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      console.log('User signed up:', user.email);
+      router.push('/');
+    } catch (error) {
+      console.error('Sign up failed:', error.code, error.message);
+      setErrors((prev) => ({
+        ...prev,
+        password: error.message,
+      }));
+    }
   };
 
   return (
@@ -75,6 +88,7 @@ export default function CreateAccountForm() {
           Create Account
         </Typography>
 
+        {/* Email Field */}
         <TextField
           label="Email"
           name="email"
@@ -86,9 +100,7 @@ export default function CreateAccountForm() {
           margin="normal"
           type="email"
           required
-          InputLabelProps={{
-            style: { color: 'var(--color-mushroom)' },
-          }}
+          InputLabelProps={{ style: { color: 'var(--color-mushroom)' } }}
           sx={{
             input: { color: 'var(--color-umber)' },
             '& .MuiOutlinedInput-root': {
@@ -99,6 +111,7 @@ export default function CreateAccountForm() {
           }}
         />
 
+        {/* Password Field */}
         <TextField
           label="Password"
           name="password"
@@ -109,9 +122,8 @@ export default function CreateAccountForm() {
           fullWidth
           margin="normal"
           type={showPassword ? 'text' : 'password'}
-          InputLabelProps={{
-            style: { color: 'var(--color-mushroom)' },
-          }}
+          required
+          InputLabelProps={{ style: { color: 'var(--color-mushroom)' } }}
           sx={{
             input: { color: 'var(--color-umber)' },
             '& .MuiOutlinedInput-root': {
@@ -135,6 +147,7 @@ export default function CreateAccountForm() {
           }}
         />
 
+        {/* Confirm Password Field */}
         <TextField
           label="Confirm Password"
           name="confirmPassword"
@@ -145,9 +158,8 @@ export default function CreateAccountForm() {
           fullWidth
           margin="normal"
           type={showPassword ? 'text' : 'password'}
-          InputLabelProps={{
-            style: { color: 'var(--color-mushroom)' },
-          }}
+          required
+          InputLabelProps={{ style: { color: 'var(--color-mushroom)' } }}
           sx={{
             input: { color: 'var(--color-umber)' },
             '& .MuiOutlinedInput-root': {
@@ -194,9 +206,6 @@ export default function CreateAccountForm() {
           </AccordionSummary>
           <AccordionDetails>
             <Stack spacing={1}>
-              <Link href="/support/guest-contact?source=create-account" sx={{ color: 'var(--color-umber)' }}>
-                Trouble creating an account?
-              </Link>
               <Link href="/login" sx={{ color: 'var(--color-umber)' }}>
                 Already have an account? Sign In
               </Link>
