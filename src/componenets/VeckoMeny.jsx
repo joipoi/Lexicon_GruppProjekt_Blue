@@ -188,13 +188,13 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
           <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Onsdag</div>
           <div className="p-3 bg-white">
        <h3 className="font-medium mb-2">Frukost</h3>
-<DroppableZone id="Wednesday-breakfast" assignedRecipe={assignedRecipes["Wednesday-breakfast"]} />
+<DroppableZone id="wednesday-breakfast" assignedRecipe={assignedRecipes["wednesday-breakfast"]} />
 
 <h3 className="font-medium mb-2">Lunch</h3>
-<DroppableZone id="Wednesday-lunch" assignedRecipe={assignedRecipes["Wednesday-lunch"]} />
+<DroppableZone id="wednesday-lunch" assignedRecipe={assignedRecipes["wednesday-lunch"]} />
 
 <h3 className="font-medium mb-2">Middag</h3>
-<DroppableZone id="Wednesday-dinner" assignedRecipe={assignedRecipes["Wednesday-dinner"]} />
+<DroppableZone id="wednesday-dinner" assignedRecipe={assignedRecipes["wednesday-dinner"]} />
 
 
           </div>
@@ -204,13 +204,13 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
           <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Torsdag</div>
           <div className="p-3 bg-white">
        <h3 className="font-medium mb-2">Frukost</h3>
-<DroppableZone id="Thursday-breakfast" assignedRecipe={assignedRecipes["Thursday-breakfast"]} />
+<DroppableZone id="thursday-breakfast" assignedRecipe={assignedRecipes["thursday-breakfast"]} />
 
 <h3 className="font-medium mb-2">Lunch</h3>
-<DroppableZone id="Thursday-lunch" assignedRecipe={assignedRecipes["Thursday-lunch"]} />
+<DroppableZone id="thursday-lunch" assignedRecipe={assignedRecipes["thursday-lunch"]} />
 
 <h3 className="font-medium mb-2">Middag</h3>
-<DroppableZone id="Thursday-dinner" assignedRecipe={assignedRecipes["Thursday-dinner"]} />
+<DroppableZone id="thursday-dinner" assignedRecipe={assignedRecipes["thursday-dinner"]} />
 
 
           </div>
@@ -220,13 +220,13 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
           <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Fredag</div>
           <div className="p-3 bg-white">
        <h3 className="font-medium mb-2">Frukost</h3>
-<DroppableZone id="Friday-breakfast" assignedRecipe={assignedRecipes["Friday-breakfast"]} />
+<DroppableZone id="friday-breakfast" assignedRecipe={assignedRecipes["friday-breakfast"]} />
 
 <h3 className="font-medium mb-2">Lunch</h3>
-<DroppableZone id="Friday-lunch" assignedRecipe={assignedRecipes["Friday-lunch"]} />
+<DroppableZone id="friday-lunch" assignedRecipe={assignedRecipes["friday-lunch"]} />
 
 <h3 className="font-medium mb-2">Middag</h3>
-<DroppableZone id="Friday-dinner" assignedRecipe={assignedRecipes["Friday-dinner"]} />
+<DroppableZone id="friday-dinner" assignedRecipe={assignedRecipes["friday-dinner"]} />
 
 
           </div>
@@ -237,13 +237,13 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
           <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Lördag</div>
           <div className="p-3 bg-white">
        <h3 className="font-medium mb-2">Frukost</h3>
-<DroppableZone id="Saturday-breakfast" assignedRecipe={assignedRecipes["Saturday-breakfast"]} />
+<DroppableZone id="saturday-breakfast" assignedRecipe={assignedRecipes["saturday-breakfast"]} />
 
 <h3 className="font-medium mb-2">Lunch</h3>
-<DroppableZone id="Saturday-lunch" assignedRecipe={assignedRecipes["Saturday-lunch"]} />
+<DroppableZone id="saturday-lunch" assignedRecipe={assignedRecipes["saturday-lunch"]} />
 
 <h3 className="font-medium mb-2">Middag</h3>
-<DroppableZone id="Saturday-dinner" assignedRecipe={assignedRecipes["Saturday-dinner"]} />
+<DroppableZone id="saturday-dinner" assignedRecipe={assignedRecipes["saturday-dinner"]} />
 
 
           </div>
@@ -253,13 +253,13 @@ const DroppableZone = ({ id, children, assignedRecipe }) => {
           <div className="bg-[#8A9B7E] p-3 text-white font-semibold text-center">Söndag</div>
           <div className="p-3 bg-white">
        <h3 className="font-medium mb-2">Frukost</h3>
-<DroppableZone id="Sunday-breakfast" assignedRecipe={assignedRecipes["Sunday-breakfast"]} />
+<DroppableZone id="sunday-breakfast" assignedRecipe={assignedRecipes["sunday-breakfast"]} />
 
 <h3 className="font-medium mb-2">Lunch</h3>
-<DroppableZone id="Sunday-lunch" assignedRecipe={assignedRecipes["Sunday-lunch"]} />
+<DroppableZone id="sunday-lunch" assignedRecipe={assignedRecipes["sunday-lunch"]} />
 
 <h3 className="font-medium mb-2">Middag</h3>
-<DroppableZone id="Sunday-dinner" assignedRecipe={assignedRecipes["Sunday-dinner"]} />
+<DroppableZone id="sunday-dinner" assignedRecipe={assignedRecipes["sunday-dinner"]} />
 
 
           </div>
