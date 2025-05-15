@@ -5,11 +5,14 @@ import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../lib/firebase'; 
 import { useRouter } from 'next/navigation';
 
+
 const RecipeCard = ({ recipe, onOpenPanel }) => {
   const router = useRouter();
 
-   const [showModal, setShowModal] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState('');
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false);
+  const [isDeleting, setIsDeleting] = useState(false);
 
   const isFirebaseRecipe = !!recipe?.id;
 
@@ -30,20 +33,27 @@ const RecipeCard = ({ recipe, onOpenPanel }) => {
 };
 
   const handleDelete = async () => {
-    if (!recipe?.id) return;
+  if (!recipe?.id) return;
 
-    const confirmDelete = window.confirm('Är du säker på att du vill ta bort detta recept?');
-    if (!confirmDelete) return;
+  setIsDeleting(true);
 
-    try {
-      await deleteDoc(doc(db, 'recipes', recipe.id));
-      alert('Receptet har tagits bort.');
-      router.push('/'); 
-    } catch (err) {
-      console.error('Error deleting recipe:', err);
-      alert('Fel vid borttagning av recept.');
-    }
-  };
+  try {
+    await deleteDoc(doc(db, 'recipes', recipe.id));
+    setModalMessage('Receptet har tagits bort.');
+    setShowModal(true);
+
+    setTimeout(() => {
+      router.push('/');
+    }, 1500);
+  } catch (err) {
+    console.error('Error deleting recipe:', err);
+    setModalMessage('Fel vid borttagning av recept.');
+    setShowModal(true);
+  } finally {
+    setIsDeleting(false);
+    setShowConfirmDelete(false);
+  }
+};
 
   const handleEdit = () => {
     router.push(`/edit-recipe/${recipe.id}`);
