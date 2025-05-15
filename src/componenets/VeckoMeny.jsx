@@ -87,18 +87,18 @@ const DraggableRecipe = ({ recipe }) => {
       style={style}
       className="drag-item bg-white p-3 rounded-lg shadow-sm border border-[#8A9B7E]"
     >
-      <div className="flex justify-between">
-        <h4 className="font-medium">{recipe.name}</h4>
-        <span
-          className={`text-xs px-2 py-1 rounded-full ${
-            recipe.category === 'Lunch'
-              ? 'bg-[#8A9B7E] text-white'
-              : 'bg-[#D4A55E] text-[#3A3226]'
-          }`}
-        >
-          {recipe.category}
-        </span>
-      </div>
+   <div className="flex justify-between items-center gap-2">
+  <h4 className="font-medium flex-1 truncate">{recipe.name}</h4>
+  <span
+    className={`text-xs px-2 py-1 rounded-full inline-flex items-center justify-center min-w-[60px] flex-shrink-0 ${
+      recipe.category === 'Lunch'
+        ? 'bg-[#8A9B7E] text-white'
+        : 'bg-[#D4A55E] text-[#3A3226]'
+    }`}
+  >
+    {recipe.category}
+  </span>
+</div>
       <p className="text-sm text-[#8C7B6B] mt-1">
         {recipe.protein} • {recipe.cookTime}
       </p>
