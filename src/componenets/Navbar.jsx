@@ -1,5 +1,4 @@
 'use client';
-
 import Image from "next/image"
 import React, { useEffect, useRef, useState } from "react"
 import { assets } from "../assets/assets"
@@ -7,6 +6,8 @@ import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../lib/firebase';
 import { handleLogout } from './Logout';
 import { useRouter } from "next/navigation";
+import { TransitionLink } from './TransitionLink';
+
 
 const Navbar = () => {
 
@@ -46,20 +47,19 @@ const Navbar = () => {
     <>
       {/* -- -------- Header Background -------- -- */}
       <div className="fixed top-0 right-0 w-full opacity-15 bg-z-10 translate-y-[-15%] bg-cream">
-        {/* <Image src={assets.header_bg_color} alt="" className="w-full" /> */}
       </div>
       {/* -- -------- Navbar -------- -- */}
       <nav className={`w-full fixed px-5 lg:px-8 xl:px-[8%] py-4 flex items-center justify-between z-50 ${isScroll ? "bg-parchment shadow-sm" : ""}`}>
         {/* -- -------- Logo -------- -- */}
-        <a href="#top">
-          <Image src={assets.LogoTerracote} alt='' className='w-38 alt="" cursor-pointer mr-14'/>
-        </a>
+        <TransitionLink href="/">
+          <Image src={assets.LogoTerracote} alt='' className='w-38 alt="" cursor-pointer mr-14'/></TransitionLink>
+        
         {/* -- -------- Desktop Menu -------- -- */}
         <ul className={`hidden md:flex items-center gap-6 lg:gap-8 rounded-lg px-12 py-3 ${isScroll ? "" : "bg-parchment shadow-sm bg-opacity-30 "} `}>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#top">Hem</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#planning">Plannering</a></li> 
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#about">Om Oss</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#contact">Kontakt</a></li>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/">Hem</TransitionLink>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/recipes">Plannering</TransitionLink> 
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/about">Om Oss</TransitionLink>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/contact">Kontakt</TransitionLink>
           
         </ul>
         {/* -- -------- Right Section -------- -- */}
@@ -71,11 +71,11 @@ const Navbar = () => {
         {/* Login Button */}
           {!user && (
                      
-          <a href="#login" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border-3 border-terracotta text-umber rounded-lg ml-4 font-Lexend hover:bg-terracotta hover:text-parchment transition-colors">Logga In
-            <span className="material-symbols-outlined">Login </span></a>
+          <TransitionLink href="/login" className="hidden lg:flex items-center gap-3 px-10 py-2.5 border-3 border-terracotta text-umber rounded-lg ml-4 font-Lexend hover:bg-terracotta hover:text-parchment transition-colors">Logga In
+            <span className="material-symbols-outlined">Login </span></TransitionLink>
             )}
           {user && (
-            <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" href="#logout" onClick={(e) => { e.preventDefault(); handleLogout(router); }}>Logga Ut</a></li>          
+            <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" href="/logout" onClick={(e) => { e.preventDefault(); handleLogout(router); }}>Logga Ut</TransitionLink>          
           )}
         {/* Hamburger Menu Button */}
           <button className="block md:hidden ml-3 text-umber hover:text-terracotta transition-colors" onClick={openMenu}>
@@ -91,13 +91,13 @@ const Navbar = () => {
             <span className="material-symbols-outlined">close</span>
          </div>
 
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#top">Hem</a></li>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/top">Hem</TransitionLink>
                     
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#planning">Plannering</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#about">Om</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#contact">Kontakt</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#login">Logga In</a></li>
-          <li><a className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="#logout">Logga Ut</a></li>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/planning">Plannering</TransitionLink>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/about">Om</TransitionLink>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/contact">Kontakt</TransitionLink>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/login">Logga In</TransitionLink>
+          <TransitionLink className="font-Lexend text-umber hover:text-terracotta transition-colors" onClick={closeMenu} href="/logout">Logga Ut</TransitionLink>
         </ul>
       </nav>
     </>

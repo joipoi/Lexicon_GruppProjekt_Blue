@@ -9,6 +9,19 @@
   font-weight: 400;
   font-style: normal;
 }
+ 
+body {
+  transition-property: opacity, background, transform, filter;
+  transition-timing-function: ease-in-out;
+  transition-duration: 500ms;
+}
+
+.page-transition {
+  opacity: 0;
+  background: #3A3226;
+  transform: translateY(40px);
+  filter: blur(10px);
+}
 
 @theme {
   --color*: initial;
@@ -27,7 +40,5 @@
 
 --color-tomato: #C45C3D;     	 /* Destructive actions (delete) */
 --color-basil: #5C6D54;       		/* Success/confirm actions */
---color-sky: #7D9DAD;         		/* Info alerts (optional) */
-
-  
+--color-sky: #7D9DAD;         		/* Info alerts (optional) */  
 }
