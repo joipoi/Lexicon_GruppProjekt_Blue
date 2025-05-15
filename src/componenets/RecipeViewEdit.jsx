@@ -1,14 +1,14 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { db } from '../../../lib/firebase'; // Adjust this import if necessary
+import { db } from '../../../lib/firebase'; 
 import { doc, updateDoc } from 'firebase/firestore';
 
 export default function RecipeViewEdit({ recipe, id }) {
   const [editedRecipe, setEditedRecipe] = useState(recipe);
 
   useEffect(() => {
-    setEditedRecipe(recipe); // Sync the recipe prop with the state whenever it changes
+    setEditedRecipe(recipe); 
   }, [recipe]);
 
   const handleChange = (e) => {

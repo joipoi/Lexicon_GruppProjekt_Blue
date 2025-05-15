@@ -95,7 +95,6 @@ export default function Recipe() {
         if (docSnap.exists()) {
           setRecipe({ id: recipeID, ...docSnap.data() });
         } else {
-          // Fall back to fake recipe
           const fallback = fakeRecipes.find((r) => r.id === recipeID);
           setRecipe(fallback || null);
         }
