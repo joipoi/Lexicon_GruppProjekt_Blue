@@ -1,12 +1,15 @@
 'use client';
 
-import React from 'react';
+import { useState } from 'react';
 import { deleteDoc, doc } from 'firebase/firestore';
 import { db } from '../lib/firebase'; 
 import { useRouter } from 'next/navigation';
 
 const RecipeCard = ({ recipe, onOpenPanel }) => {
   const router = useRouter();
+
+   const [showModal, setShowModal] = useState(false);
+  const [modalMessage, setModalMessage] = useState('');
 
   const isFirebaseRecipe = !!recipe?.id;
 
@@ -20,7 +23,10 @@ const RecipeCard = ({ recipe, onOpenPanel }) => {
     const updatedMenu = [...storedMenu, recipe];
     localStorage.setItem('valdaRecept', JSON.stringify(updatedMenu));
   }
-  alert("La till " + recipe.name + " i meny");
+  //alert("La till " + recipe.name + " i meny");
+  setModalMessage(`La till ${recipe.name} i meny`);
+  setShowModal(true);
+
 };
 
   const handleDelete = async () => {
@@ -80,6 +86,23 @@ const RecipeCard = ({ recipe, onOpenPanel }) => {
             Lägg till i meny
           </button>
         </div>
+
+            {/* Modal */}
+      {showModal && (
+   <div className="fixed inset-0 bg-black/30 flex justify-center items-start pt-24 z-50">
+          <div className="bg-white rounded-lg p-6 max-w-sm w-full shadow-xl">
+            <p className="text-lg font-medium text-gray-800">{modalMessage}</p>
+            <div className="mt-4 text-right">
+              <button
+                onClick={() => setShowModal(false)}
+                className="bg-[#8A9B7E] text-white px-4 py-2 rounded cursor-pointer"
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
         {isFirebaseRecipe && (
           <div className="flex justify-between gap-2 mt-2">

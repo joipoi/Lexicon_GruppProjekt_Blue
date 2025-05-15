@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import ShoppingListPDF from './ShoppingListPDF';
+import { PDFDownloadLink } from '@react-pdf/renderer';
 
 const ShoppingList = () => {
   const [ingredients, setIngredients] = useState([]);
@@ -29,7 +31,11 @@ const ShoppingList = () => {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold">Inköpslista</h2>
         <div className="flex space-x-2">
-         {/* <button className="cursor-pointer px-4 py-2 rounded-lg border border-[#8A9B7E]">Skriv ut</button> */} 
+     <PDFDownloadLink document={<ShoppingListPDF ingredients={ingredients} />} fileName={`ShoppingList.pdf`}>
+         <button className="cursor-pointer px-4 py-2 rounded-lg border border-[#8A9B7E]">Skriv ut</button> 
+        </PDFDownloadLink>
+         
+
           <button onClick={clearList} className="cursor-pointer px-4 py-2 rounded-lg border border-[#8A9B7E]">
             Rensa allt
           </button>

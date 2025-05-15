@@ -146,7 +146,7 @@ const RecipePDF = ({ recipe }) => (
       <View style={styles.recipeHeader}>
         <Text style={styles.title}>{recipe.name}</Text>
         <View style={styles.metaInfo}>
-          <Text style={styles.metaItem}>Tillagningstid: {recipe.cookTime} min</Text>
+          <Text style={styles.metaItem}>Tillagningstid: {recipe.cookTime}</Text>
           <Text style={styles.metaItem}>Portioner: {recipe.servings || '4'}</Text>
           <Text style={styles.metaItem}>Kategori: {recipe.category || 'Middag'}</Text>
         </View>
