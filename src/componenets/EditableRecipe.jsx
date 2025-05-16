@@ -1,10 +1,14 @@
 'use client';
 
 import { useState } from 'react';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../lib/firebase'; 
 
-export default function EditableRecipe({ initialRecipe }) {
+export default function EditableRecipe({ initialRecipe, id }) {
   const [recipe, setRecipe] = useState(initialRecipe);
   const [editingField, setEditingField] = useState(null);
+  const [saving, setSaving] = useState(false);
+  const [message, setMessage] = useState('');
 
   const handleFieldChange = (field, value) => {
     setRecipe((prev) => ({
@@ -20,10 +24,25 @@ export default function EditableRecipe({ initialRecipe }) {
     }));
   };
 
+  const handleSave = async () => {
+  console.log('Saving recipe data:', recipe);
+  try {
+    setSaving(true);
+    const docRef = doc(db, 'recipes', id);
+    await updateDoc(docRef, recipe);
+    setMessage('✅ Changes saved!');
+  } catch (error) {
+    console.error('Error saving recipe:', error);
+    setMessage('❌ Failed to save changes.');
+  } finally {
+    setSaving(false);
+  }
+  };
+
   return (
     <div>
       {/* Name */}
-      <h1 className="text-3xl font-bold mb-4">
+      <h1 className="text-3xl font-bold mb-4 mt-28">
         {editingField === 'name' ? (
           <input
             className="border p-1 w-full"
@@ -164,6 +183,19 @@ export default function EditableRecipe({ initialRecipe }) {
           </li>
         ))}
       </ul>
+      {/*
+      <div className="mt-6">
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="bg-blue-500 text-white p-2 rounded"
+      >
+          {saving ? 'Saving...' : 'Save Changes'}
+        </button>
+
+        {message && <p className="mt-2 text-sm">{message}</p>}
+      </div>
+      */}
     </div>
   );
 }

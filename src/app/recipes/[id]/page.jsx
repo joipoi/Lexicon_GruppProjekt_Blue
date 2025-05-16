@@ -20,7 +20,7 @@ export default async function RecipePage({ params }) {
 
   return (
     <div className="max-w-3xl mx-auto p-6">
-      <EditableRecipe initialRecipe={recipe} />
+      <EditableRecipe initialRecipe={recipe} className="mt-28"/>
     </div>
   );
 }
