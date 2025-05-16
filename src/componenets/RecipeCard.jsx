@@ -56,7 +56,7 @@ const RecipeCard = ({ recipe, onOpenPanel }) => {
 };
 
   const handleEdit = () => {
-    router.push(`/edit-recipe/${recipe.id}`);
+    router.push(`/recipes/${recipe.id}`);
   };
 
   return (
